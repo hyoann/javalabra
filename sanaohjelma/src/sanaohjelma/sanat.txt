@@ -1,2 +1,2 @@
-kissa - кошка
-koira - собака
+kissa - cat
+koira - dog

@@ -1,9 +1,7 @@
 package sanaohjelma.sovelluslogiikka;
 
-
 import java.util.HashMap;
 import java.util.Set;
-
 
 public class Sanat {
     private HashMap<String, String> sanat;
