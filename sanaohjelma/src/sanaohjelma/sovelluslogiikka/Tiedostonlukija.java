@@ -1,8 +1,6 @@
 package sanaohjelma.sovelluslogiikka;
 
-
 import java.io.File;
-import java.util.HashMap;
 import java.util.Scanner;
 
 public class Tiedostonlukija {
@@ -18,7 +16,7 @@ public class Tiedostonlukija {
         Scanner lukija = null;
 
         try {
-            lukija = new Scanner(sanatTiedostossa);
+            lukija = new Scanner(sanatTiedostossa, "UTF-8");
         } catch (Exception e) {
             System.out.println("Tiedoston lukeminen epäonnistui:" + e.getMessage());
             return null;
