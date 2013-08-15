@@ -29,7 +29,7 @@ public class TiedostonlukijaTest {
 
     @Test
     public void lueTiedostoTallentaaSanaparitOikeinSanatOlioon() {
-        assertEquals(lukija.lueTiedosto().kaannos("a"), "b");
-        assertEquals(lukija.lueTiedosto().kaannos("ab"), "ba");
+        assertEquals(lukija.lueTiedosto().kaannaVieraaseen("a"), "b");
+        assertEquals(lukija.lueTiedosto().kaannaVieraaseen("ab"), "ba");
     }
 }
