@@ -1,36 +1,52 @@
 package sanaohjelma.sovelluslogiikka;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Tiedostonlukija {
-    private File sanatTiedostossa;
-    private Sanat sanat;
+    private File tiedosto;
 
-    public Tiedostonlukija(File sanatTiedostossa) {
-        this.sanatTiedostossa = sanatTiedostossa;
-        this.sanat = new Sanat();
+    public Tiedostonlukija(File tiedosto) {
+        this.tiedosto = tiedosto;
     }
 
-    public Sanat lueTiedosto() {
+    public ArrayList<String> lueTiedosto() {
         Scanner lukija = null;
 
         try {
-            lukija = new Scanner(sanatTiedostossa, "UTF-8");
+            lukija = new Scanner(tiedosto, "UTF-8");
         } catch (Exception e) {
             System.out.println("Tiedoston lukeminen epäonnistui:" + e.getMessage());
             return null;
         }
 
+        ArrayList<String> rivit = new ArrayList<String>();
+
         while (lukija.hasNextLine()) {
             String rivi = lukija.nextLine();
-
-            String[] sanapari = rivi.split(" - ");
-
-            sanat.lisaa(sanapari[0], sanapari[1]);
+            rivit.add(rivi);
         }
 
         lukija.close();
+
+        return rivit;
+    }
+
+    public Sanat tallennaSanaparit(ArrayList<String> rivit) {
+        Sanat sanat = new Sanat();
+        
+        for (String rivi : rivit) {
+            String[] sanapari = rivi.split(" - ");
+            sanat.lisaa(sanapari[0], sanapari[1]);
+        }
         return sanat;
     }
+    
+    public Sanat tuoSanat() {
+        ArrayList<String> rivit = this.lueTiedosto();
+        Sanat sanat = tallennaSanaparit(rivit);
+        return sanat;
+    }
+
 }

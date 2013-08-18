@@ -1,46 +1,45 @@
 package sanaohjelma.kayttoliittyma;
 
 import java.util.Scanner;
-import sanaohjelma.sovelluslogiikka.Sanat;
-import sanaohjelma.sovelluslogiikka.Sanavalitsin;
-import sanaohjelma.sovelluslogiikka.Tarkistaja;
+import sanaohjelma.Sanaohjelma;
 import sanaohjelma.sovelluslogiikka.Tiedostonlukija;
-import sanaohjelma.sovelluslogiikka.Tilasto;
 
 public class Tekstikayttoliittyma {
-    private Tiedostonlukija tiedostonlukija;
+    private Sanaohjelma ohjelma;
     private Scanner lukija;
-    private Sanat sanat;
-    private Tilasto tilasto;
 
     public Tekstikayttoliittyma(Tiedostonlukija tiedostonlukija, Scanner lukija) {
-        this.tiedostonlukija = tiedostonlukija;
+        this.ohjelma = new Sanaohjelma(tiedostonlukija);
         this.lukija = lukija;
-        this.sanat = tiedostonlukija.lueTiedosto();
-        this.tilasto = new Tilasto();
     }
 
     public void kaynnista() {
         System.out.println("Tervetuloa");
         System.out.println("");
 
-
         while (true) {
-            valikko();
+            this.valikko();
+            
             String valinta = lukija.nextLine();
             System.out.println("");
 
             if (valinta.equals("0")) {
                 break;
-            }
-            if (!valinta.equals("1") && !valinta.equals("2") && !valinta.equals("3")) {
-                continue;
+            }           
+            if (valinta.equals("1")) {
+                naytaSanat();
+            } else if (valinta.equals("2")) {
+                kaannosTehtava("suomi");
+            } else if (valinta.equals("3")) {
+                kaannosTehtava("vieras");
+            } else if (valinta.equals("4")) {
+                lisaaSana();
+            } else {
+                valikko();
             }
 
-            valinta(valinta);
             System.out.println("");
         }
-
 
         System.out.println("Kiitos hei!");
     }
@@ -50,46 +49,27 @@ public class Tekstikayttoliittyma {
         System.out.println("    1 - Näytä kaikki sanat");
         System.out.println("    2 - Käännöstehtävä suomesta venäjään");
         System.out.println("    3 - Käännöstehtävä venäjästä suomeen");
+        System.out.println("    4 - Lisää sana");
         System.out.println("    0 - lopeta");
 
         System.out.println("");
     }
 
-    public void valinta(String valinta) {
-        if (valinta.equals("1")) {
-            naytaSanat();
-        } else if (valinta.equals("2")) {
-            kaannosTehtava("suomi");
-        } else if (valinta.equals("3")) {
-            kaannosTehtava("vieras");
-        } else {
-            valikko();
-        }
-    }
 
-    public void kysySanat(int kerrat, String kaannettavaKieli) {
-        //väärin arvattujen sanojen toistotiheys toistaiseksi kovakoodattu
-        Sanavalitsin valitsin = new Sanavalitsin(3, this.tilasto, this.sanat);
-        
-        for (int i = 0; i < kerrat; i++) {
-            String kysyttavaSana = valitsin.annaSana(kaannettavaKieli);
+    public void kysySanat(int kerrat, String kaannettavaKieli) {      
+       for (int i = 0; i < kerrat; i++) {
+            String kysyttavaSana = this.ohjelma.annaSana(kaannettavaKieli);
             System.out.print("Anna käännös sanalle " + kysyttavaSana + ": ");
             String annettuVastaus = lukija.nextLine();
-            tarkistaAnnettuKaannos(kysyttavaSana, annettuVastaus, kaannettavaKieli);
-     
+            this.tarkistaAnnettuKaannos(kysyttavaSana, annettuVastaus, kaannettavaKieli);
         }
     }
 
-    public void tarkistaAnnettuKaannos(String kysyttySana, String annettuVastaus, String kieli) {
-        Tarkistaja tarkistaja = new Tarkistaja(this.sanat, kieli);  
-        
-        if (tarkistaja.vastausOikein(kysyttySana, annettuVastaus)) {
+    public void tarkistaAnnettuKaannos(String kysyttySana, String annettuVastaus, String kieli) {      
+        if (this.ohjelma.vastausOikein(kysyttySana, annettuVastaus, kieli)) {
             System.out.println("Oikein!");
-            //sana voidaan poistaa mokattujen sanojen listalta
-            tilasto.annaMuistio(kieli).poistaSana(kysyttySana);
         } else {
-            tilasto.annaMuistio(kieli).lisaaSana(kysyttySana);
-            System.out.println("Väärin! Oikea vastaus: " + tarkistaja.haeOikeaVastaus(kysyttySana));
+            System.out.println("Väärin! Oikea vastaus: " + this.ohjelma.haeOikeaVastaus(kysyttySana, kieli));
         }
         System.out.println("");
     }
@@ -113,10 +93,19 @@ public class Tekstikayttoliittyma {
 
         kysySanat(kerrat, kaannettavaKieli);
 
-        System.out.println(this.tilasto);
+        System.out.println(this.ohjelma.tilasto());
     }
-
+    
     public void naytaSanat() {
-        System.out.println(this.sanat);
+        System.out.println(this.ohjelma.naytaSanat());
+    }
+    
+    public void lisaaSana() {
+        System.out.print("Anna sana suomeksi: ");
+        String suomi = lukija.nextLine();
+        System.out.print("Anna sana venäjäksi: ");
+        String vieras = lukija.nextLine();
+        
+        this.ohjelma.lisaaSanapari(suomi, vieras);
     }
 }

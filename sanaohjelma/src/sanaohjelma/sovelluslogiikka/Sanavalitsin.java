@@ -12,7 +12,7 @@ public class Sanavalitsin {
     }
 
     public String annaSana(String kieli) {
-        tilasto.kasvataSanamaaraa();
+        
     
         //onko aika  kysyä sanaa mokattujen sanojen listalta
         if (tilasto.sanamaara() != 0 && tilasto.sanamaara() % this.toistovali == 0) {

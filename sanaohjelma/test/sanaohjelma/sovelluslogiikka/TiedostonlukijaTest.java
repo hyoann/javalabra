@@ -24,12 +24,12 @@ public class TiedostonlukijaTest {
 
     @Test
     public void lueTiedostoPalauttaaSanatLuokanOlion() {
-        assertTrue(lukija.lueTiedosto() instanceof Sanat);
+        assertTrue(lukija.tuoSanat() instanceof Sanat);
     }
 
     @Test
     public void lueTiedostoTallentaaSanaparitOikeinSanatOlioon() {
-        assertEquals(lukija.lueTiedosto().kaannaVieraaseen("a"), "b");
-        assertEquals(lukija.lueTiedosto().kaannaVieraaseen("ab"), "ba");
+        assertEquals(lukija.tuoSanat().kaannaVieraaseen("a"), "b");
+        assertEquals(lukija.tuoSanat().kaannaVieraaseen("ab"), "ba");
     }
 }
