@@ -19,6 +19,14 @@ public class Sanat {
         vierasSuomi.put(vieras, suomi);
     }
     
+    public void poista(String sanaSuomeksi) {
+        String sanaVieraaksi = this.kaannaVieraaseen(sanaSuomeksi);
+        if (sanaVieraaksi != null) {
+            suomiVieras.remove(sanaSuomeksi);
+            vierasSuomi.remove(sanaVieraaksi);
+        }
+   }
+    
     public String kaannaVieraaseen(String suomi) {
         return suomiVieras.get(suomi);
     }
@@ -42,6 +50,10 @@ public class Sanat {
         ArrayList<String> avaimetListassa = new ArrayList<String>(avaimet);
         
         return avaimetListassa.get(indeksi);
+    }
+    
+    public int sanojenMaara() {
+        return this.suomiVieras.size();
     }
     
     public String toString() {

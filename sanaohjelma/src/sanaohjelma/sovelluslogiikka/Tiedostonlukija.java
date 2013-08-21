@@ -5,13 +5,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Tiedostonlukija {
-    private File tiedosto;
 
-    public Tiedostonlukija(File tiedosto) {
-        this.tiedosto = tiedosto;
-    }
-
-    public ArrayList<String> lueTiedosto() {
+    public ArrayList<String> lueTiedosto(File tiedosto) {
         Scanner lukija = null;
 
         try {
@@ -35,18 +30,51 @@ public class Tiedostonlukija {
 
     public Sanat tallennaSanaparit(ArrayList<String> rivit) {
         Sanat sanat = new Sanat();
-        
+
         for (String rivi : rivit) {
             String[] sanapari = rivi.split(" - ");
             sanat.lisaa(sanapari[0], sanapari[1]);
         }
         return sanat;
     }
-    
-    public Sanat tuoSanat() {
-        ArrayList<String> rivit = this.lueTiedosto();
+
+    public Kayttajat haeKayttajat(ArrayList<String> rivit) {
+        Kayttajat kayttajat = new Kayttajat();
+
+        for (String rivi : rivit) {
+            String[] tiedot = rivi.split(", ");
+            int kysytytSanat = Integer.parseInt(tiedot[3]);
+            int mokatut = Integer.parseInt(tiedot[4]);
+            Tilasto tilasto = new Tilasto(kysytytSanat, mokatut);
+            Kayttaja kayttaja = new Kayttaja(tiedot[1], tiedot[2], tilasto);
+            kayttajat.lisaaKayttaja(tiedot[0], kayttaja);
+        }
+        return kayttajat;
+    }
+
+    public Sanat tuoSanat(File tiedosto) {
+        ArrayList<String> rivit = this.lueTiedosto(tiedosto);
         Sanat sanat = tallennaSanaparit(rivit);
         return sanat;
+    }
+
+    public Kayttajat tuoKayttajat(File tiedosto) {
+        ArrayList<String> rivit = this.lueTiedosto(tiedosto);
+        Kayttajat kayttajat = haeKayttajat(rivit);
+        return kayttajat;
+    }
+    
+    public ArrayList<String> tiedostojenNimet() {
+        File kansio = new File("src/sanaohjelma/sanatiedostot");
+        File[] tiedostot = kansio.listFiles();
+        
+        ArrayList<String> nimet = new ArrayList<String>();
+        
+        for (File tiedosto : tiedostot) {
+            nimet.add(tiedosto.getName());
+        }
+        
+        return nimet;
     }
 
 }

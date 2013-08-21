@@ -9,11 +9,11 @@ public class Main {
 
     public static void main(String args[]) {
         Scanner lukija = new Scanner(System.in, "UTF-8");
-        Tiedostonlukija tiedostonlukija = new Tiedostonlukija(new File(("src/sanaohjelma/sanat.txt")));
+        Tiedostonlukija tiedostonlukija = new Tiedostonlukija();
         
         Tekstikayttoliittyma tekstikäli = new Tekstikayttoliittyma(tiedostonlukija, lukija);
        
-        tekstikäli.kaynnista();
+        tekstikäli.kirjautuminen();
         
     }  
 }

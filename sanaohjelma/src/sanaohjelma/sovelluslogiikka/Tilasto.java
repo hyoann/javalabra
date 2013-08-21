@@ -7,11 +7,13 @@ public class Tilasto {
     private MokausMuistio suomi;
     private MokausMuistio vieras;
     private int kysytytSanat;
+    private int vaaratVastaukset;
 
-    public Tilasto() {
+    public Tilasto(int kysytytSanat, int vaaratVastaukset) {
         this.suomi = new MokausMuistio();
         this.vieras = new MokausMuistio();
-        this.kysytytSanat = 0;
+        this.vaaratVastaukset = kysytytSanat;
+        this.kysytytSanat = vaaratVastaukset;
     }
     
     public void kasvataSanamaaraa() {
@@ -22,12 +24,20 @@ public class Tilasto {
         return this.kysytytSanat;
     }
     
-    public int mokauskerrat() {
+    public void kasvataMokattuja() {
+        this.vaaratVastaukset++;
+    }
+    
+    public int mokatut() {
+        return this.vaaratVastaukset;
+    }
+    
+    public int mokauskerrat() {        
         return this.suomi.mokauskerrat() + this.vieras.mokauskerrat();
     }
     
     public double voittoprosentti() {
-        int oikeinVastatutKerrat = sanamaara() - mokauskerrat();
+        int oikeinVastatutKerrat = sanamaara() - mokatut();
         
         double voitto = 100 * oikeinVastatutKerrat / (double)sanamaara();
     
@@ -45,7 +55,7 @@ public class Tilasto {
         String tilasto = "";
         
         tilasto += "Sanoja on kysytty yhteensä: " + this.kysytytSanat + " kpl \n";
-        tilasto += "Oikeita vastauksia: " + (this.kysytytSanat - this.mokauskerrat()) + " kpl \n";
+        tilasto += "Oikeita vastauksia: " + (this.kysytytSanat - this.mokatut()) + " kpl \n";
         tilasto += "Voittoprosentti: " + this.voittoprosentti() + " %";
         
         return tilasto;
