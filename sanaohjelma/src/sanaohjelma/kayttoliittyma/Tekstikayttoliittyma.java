@@ -128,6 +128,7 @@ public class Tekstikayttoliittyma {
         while (true) {
             System.out.print("Monta kertaa kysytään? ");
 
+        
             try {
                 kerrat = Integer.parseInt(lukija.nextLine());
                 break;
