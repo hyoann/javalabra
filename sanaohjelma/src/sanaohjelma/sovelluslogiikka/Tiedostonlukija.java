@@ -39,14 +39,19 @@ public class Tiedostonlukija {
     }
 
     public Kayttajat haeKayttajat(ArrayList<String> rivit) {
-        Kayttajat kayttajat = new Kayttajat();
+        Kayttajat kayttajat = new Kayttajat();      
 
-        for (String rivi : rivit) {
+        for (String rivi : rivit) {           
             String[] tiedot = rivi.split(", ");
+            
+            //Tiedot ovat tiedostossa muodossa 'tunnus, nimi, salasana, kysytytSanat, mokatut'
             int kysytytSanat = Integer.parseInt(tiedot[3]);
             int mokatut = Integer.parseInt(tiedot[4]);
+            
             Tilasto tilasto = new Tilasto(kysytytSanat, mokatut);
+            
             Kayttaja kayttaja = new Kayttaja(tiedot[1], tiedot[2], tilasto);
+            
             kayttajat.lisaaKayttaja(tiedot[0], kayttaja);
         }
         return kayttajat;
@@ -65,7 +70,7 @@ public class Tiedostonlukija {
     }
     
     public ArrayList<String> tiedostojenNimet() {
-        File kansio = new File("src/sanaohjelma/sanatiedostot");
+        File kansio = new File("src/sanaohjelma/Sanatiedostot");
         File[] tiedostot = kansio.listFiles();
         
         ArrayList<String> nimet = new ArrayList<String>();

@@ -2,13 +2,13 @@
 package sanaohjelma.sovelluslogiikka;
 
 public class Kayttaja {
-    private String salasana;
     private String nimi;
+    private String salasana; 
     private Tilasto tilasto;
     
-    public Kayttaja(String salasana, String nimi, Tilasto tilasto) {
-        this.salasana = salasana;
+    public Kayttaja(String nimi, String salasana, Tilasto tilasto) {      
         this.nimi = nimi;
+        this.salasana = salasana;
         this.tilasto = tilasto;        
     }
     

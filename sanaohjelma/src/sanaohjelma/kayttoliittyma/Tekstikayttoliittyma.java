@@ -24,6 +24,7 @@ public class Tekstikayttoliittyma {
         String tunnus = lukija.nextLine();
         System.out.print("Anna salasana: ");
         String salasana = lukija.nextLine();
+        System.out.println("");
         if (this.ohjelma.haeKayttaja(tunnus, salasana) != null) {
             this.naytaTiedot();
             this.valitseTiedostot();
@@ -34,9 +35,11 @@ public class Tekstikayttoliittyma {
     }
     
     public void naytaTiedot() {
-        System.out.println("Hei " + this.ohjelma.kayttajanNimi());
-        System.out.println("Tilastosi:");
+        System.out.println("Hei " + this.ohjelma.kayttajanNimi() + "!");
+        System.out.println("Tietosi:");
+        System.out.println("");
         System.out.println(this.ohjelma.kayttajanTilasto());
+        System.out.println("");
     }
     
     public void valitseTiedostot() {
@@ -46,8 +49,10 @@ public class Tekstikayttoliittyma {
             System.out.println(i + " " + this.ohjelma.tiedostojenNimet().get(i));
         }
         System.out.println("");
-        System.out.print("Anna tiedostoa vastaava luku. Tyhjällä harjoittelualueeksi otetaan kaikki tiedostot: ");
+        System.out.print("Anna tiedostoa vastaava luku. Kirjoita 'X' viimeisen tiedoston jälkeen. Tyhjällä harjoittelualueeksi otetaan kaikki tiedostot: ");
+       
         int valinta = Integer.parseInt(lukija.nextLine());
+
         this.ohjelma.valitseTiedostot(this.ohjelma.tiedostojenNimet().get(valinta));
         System.out.println("");
         
@@ -61,6 +66,7 @@ public class Tekstikayttoliittyma {
             System.out.println("");
 
             if (valinta.equals("0")) {
+                lopetus();
                 break;
             }
             if (valinta.equals("1")) {
@@ -134,8 +140,6 @@ public class Tekstikayttoliittyma {
         System.out.println("");
 
         kysySanat(kerrat, kaannettavaKieli);
-
-        System.out.println(this.ohjelma.tilasto());
     }
 
     public void naytaSanat() {
@@ -171,6 +175,7 @@ public class Tekstikayttoliittyma {
         ArrayList<Integer> indeksit = new ArrayList<Integer>();
 
         int kierros = 0;
+        
          while(kierros < maara) {
             String sana = this.ohjelma.annaSana("suomi");
             
@@ -185,11 +190,13 @@ public class Tekstikayttoliittyma {
         Collections.shuffle(indeksit);
 
         System.out.println("Yhdistä: ");
-
+        System.out.println("");
+        
         for (int i = 0; i < indeksit.size(); i++) {
             String kaannos = this.ohjelma.haeOikeaVastaus(sanat.get(indeksit.get(i)), "suomi");
             System.out.println(i + 1 + "." + sanat.get(i) + "  " + (char) (i + 97) + "." + kaannos);
         }
+        System.out.println("");
         System.out.println("Anna vastaukset muodossa '1a':");
 
         int oikein = 0;
@@ -209,11 +216,20 @@ public class Tekstikayttoliittyma {
             
 
         }
+        System.out.println("");
         System.out.println("Sait oikein " + oikein + "/" + maara);
         System.out.print("Oikea rivi: ");
         for (int i = 0; i < indeksit.size(); i++) {
             System.out.print(indeksit.get(i) + 1 + "" + (char)(i + 97));
             System.out.print(" ");
         }
+        System.out.println("");
+    }
+    
+    public void lopetus() {
+        System.out.println("Tietosi:");
+        System.out.println(this.ohjelma.kayttajanTilasto());
+        
+//        this.ohjelma.tallennaTilasto();
     }
 }

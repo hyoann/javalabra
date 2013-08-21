@@ -20,7 +20,7 @@ public class Sanaohjelma {
 
     public Sanaohjelma(Tiedostonlukija tiedostonlukija) {
         this.tiedostonlukija = tiedostonlukija;
-        this.sanat = tiedostonlukija.tuoSanat(new File("src/sanaohjelma/sanatiedostot/sanat.txt"));
+        this.sanat = tiedostonlukija.tuoSanat(new File("src/sanaohjelma/Sanatiedostot/sanat.txt"));
         this.kayttajat = tiedostonlukija.tuoKayttajat(new File("src/sanaohjelma/kayttajat.txt"));
         this.kayttaja = null;
         this.tilasto = null;
@@ -28,12 +28,14 @@ public class Sanaohjelma {
 
     public boolean vastausOikein(String kysyttySana, String annettuVastaus, String kieli) {
         Tarkistaja tarkistaja = new Tarkistaja(this.sanat, kieli);
+        tilasto.kasvataSanamaaraa();
         
         if (tarkistaja.vastausOikein(kysyttySana, annettuVastaus)) {
             //sana voidaan poistaa mokattujen sanojen listalta
             tilasto.annaMuistio(kieli).poistaSana(kysyttySana);
             return true;
         }
+        tilasto.kasvataMokattuja();
         tilasto.annaMuistio(kieli).lisaaSana(kysyttySana);
         return false;
     }
@@ -50,6 +52,7 @@ public class Sanaohjelma {
     
     public String haeOikeaVastaus(String sana, String kieli) {
         Tarkistaja tarkistaja = new Tarkistaja(this.sanat, kieli);
+        
         return tarkistaja.haeOikeaVastaus(sana);
     }
     
@@ -65,6 +68,7 @@ public class Sanaohjelma {
     
     public Kayttaja haeKayttaja(String tunnus, String salasana) {
        this.kayttaja = this.kayttajat.haeKayttaja(tunnus, salasana);
+       
        this.tilasto = this.kayttaja.getTilasto();
        return this.kayttaja;
        }
@@ -72,6 +76,7 @@ public class Sanaohjelma {
     public void poistaSana(String sana) {
         TiedostoonKirjoittaja kirjoittaja = new TiedostoonKirjoittaja();
         sanat.poista(sana);
+        
         kirjoittaja.paivitaSanatTiedostossa(this.sanat);
     }
     
@@ -84,7 +89,7 @@ public class Sanaohjelma {
     }
     
     public void valitseTiedostot(String nimi) {
-       this.sanat = tiedostonlukija.tuoSanat(new File("src/sanaohjelma/sanatiedostot/" + nimi));
+       this.sanat = tiedostonlukija.tuoSanat(new File("src/sanaohjelma/Sanatiedostot/" + nimi));
     }
     
     public String kayttajanNimi() {
@@ -92,7 +97,12 @@ public class Sanaohjelma {
     }
     
     public String kayttajanTilasto() {
-        return this.kayttaja.tilasto();
+        return this.tilasto.toString();
     }
+    
+//    public void tallennaTilasto(String kayttaja, Tilasto tilasto) {
+//        TiedostoonKirjoittaja kirjoittaja = new TiedostoonKirjoittaja();
+//        kirjoittaja.tallennaTilasto(kayttaja, tilasto);
+//    }
  
 }

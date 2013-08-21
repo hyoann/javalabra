@@ -36,6 +36,10 @@ public class TiedostoonKirjoittaja {
         this.kirjoitaTiedostoon("src/sanaohjelma/Sanatiedostot/sanat.txt", sanat.toString());    
     }
     
+    public void paivitaKayttajanTilasto() {
+        
+    }
+    
     public void kaannaSanatTiedostossa() {
         Tiedostonlukija lukija = new Tiedostonlukija();
         ArrayList<String> rivit = lukija.lueTiedosto(new File("src/sanaohjelma/Sanatiedostot/KPL1.txt"));
