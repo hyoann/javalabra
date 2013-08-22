@@ -8,16 +8,13 @@ import java.util.Random;
 
 public class MokausMuistio {
     private ArrayList<String> vaarinArvatut;
-    private int kerrat;
     
     public MokausMuistio() {
         this.vaarinArvatut = new ArrayList<String>();
-        this.kerrat = 0;
     }
     
     public void lisaaSana(String sana) {
         this.vaarinArvatut.add(sana);
-        this.kerrat++;
     }
     
     public void poistaSana(String sana) {
@@ -35,9 +32,5 @@ public class MokausMuistio {
         int indeksi = arpoja.nextInt(this.vaarinArvatut.size());
         
         return this.vaarinArvatut.get(indeksi);        
-    }
-    
-    public int mokauskerrat() {
-        return this.kerrat;
     }
 }

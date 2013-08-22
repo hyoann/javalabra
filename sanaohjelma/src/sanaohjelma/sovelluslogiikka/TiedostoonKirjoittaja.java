@@ -5,8 +5,17 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ *TiedostoonKirjoittaja-luokan avulla voidaan kirjoittaa tilastoon tekstiä.
+ */
 public class TiedostoonKirjoittaja {
 
+    /**
+     *Metodi kirjoittaa tiedostoon halutun tekstin.
+     * 
+     * @param sijainti Tiedostopolku
+     * @param teksti Tiedostoon kirjoitettava teksti
+     */
     public void kirjoitaTiedostoon(String sijainti, String teksti) {
         try {
             FileWriter kirjoittaja = new FileWriter(sijainti);
@@ -17,6 +26,12 @@ public class TiedostoonKirjoittaja {
         }
     }
 
+    /**
+     * Metodi lisää tiedostoon halutun tekstin.
+     *
+     * @param sijainti Tiedostopolku
+     * @param teksti Tiedostoon lisättävä teksti
+     */
     public void lisaaTiedostoon(String sijainti, String teksti) {
         try {
             FileWriter kirjoittaja = new FileWriter(sijainti, true);
@@ -27,26 +42,34 @@ public class TiedostoonKirjoittaja {
         } 
     }
     
-    public void tallennaSanapari(String tiedosto, String suomi, String vieras) {
-        String tallennettava = suomi + " - " + vieras;
+    /**
+     * Metodi liittää kahden sanan väliin väliviivan, ja lisaa näin saadun uuden merkkijonon
+     * haluttuun tiedostoon.
+     *
+     * @param tiedosto Tiedostopolku
+     * @param sana1 Väliviivaa edeltävä sana
+     * @param sana2 Väliviivan jälkeen liitettävä sana
+     */
+    public void tallennaSanapari(String tiedosto, String sana1, String sana2) {
+        String tallennettava = sana1 + " - " + sana2;
         this.lisaaTiedostoon(tiedosto, tallennettava);
     }
     
+    /**
+     * Metodi kirjoittaa Sanat-luokan merkkijonoesityksen tiedostoon.
+     *
+     * @param sanat Sanat-luokan ilmentymä, joka halutaan tallentaa.
+     */
     public void paivitaSanatTiedostossa(Sanat sanat) {
         this.kirjoitaTiedostoon("src/sanaohjelma/Sanatiedostot/sanat.txt", sanat.toString());    
     }
     
-    public void paivitaKayttajanTilasto() {
-        
-    }
-    
-    public void kaannaSanatTiedostossa() {
-        Tiedostonlukija lukija = new Tiedostonlukija();
-        ArrayList<String> rivit = lukija.lueTiedosto(new File("src/sanaohjelma/Sanatiedostot/KPL1.txt"));
-        for (String rivi : rivit) {
-            String[] sanapari = rivi.split(" - ");
-            String uusiRivi = sanapari[1] + " - " + sanapari[0];
-            lisaaTiedostoon("src/sanaohjelma/Sanatiedostot/KPL1.txt", uusiRivi);
-        }
+    /**
+     *Metodi tallentaa kayttajien tiedot kayttajat.txt-tiedostoon.
+     * 
+     * @param kayttajat Järjestelmän käyttäjät
+     */
+    public void paivitaKayttajanTilasto(Kayttajat kayttajat) {
+        this.kirjoitaTiedostoon("src/sanaohjelma/kayttajat.txt", kayttajat.toString() );
     }
 }

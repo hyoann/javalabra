@@ -33,4 +33,13 @@ public class Kayttajat {
         }
         return null;
     }
+    
+    public String toString() {
+        String mj = "";
+        for (Kayttaja kayttaja : this.kayttajat.values()) {
+            mj += kayttaja.toString();
+            mj += "\n";
+        }
+        return mj;
+    }
 }

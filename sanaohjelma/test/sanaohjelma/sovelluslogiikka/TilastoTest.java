@@ -11,12 +11,7 @@ public class TilastoTest {
     
     @Before
     public void setUp() {
-        this.tilasto = new Tilasto();
-    }
-
-    @Test
-    public void alustettuOikein() {
-        assertEquals(this.tilasto.sanamaara(), 0);
+        this.tilasto = new Tilasto(0, 0);
     }
     
     @Test
@@ -31,8 +26,7 @@ public class TilastoTest {
      public void voittoprosenttiLasketaanOikein() {
          this.tilasto.kasvataSanamaaraa();
          this.tilasto.kasvataSanamaaraa();
-         
-         this.tilasto.annaMuistio("suomi").lisaaSana("fas");
+         this.tilasto.kasvataMokattuja();
          
          assertTrue(this.tilasto.voittoprosentti() == 50.0);
          

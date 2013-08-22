@@ -1,2 +1,2 @@
-mat, Matti, sala1, 1, 2
-mai, Maija, sala2, 3, 4
+mai, Maija, sala2, 4, 3
+mat, Matti, sala1, 18, 6

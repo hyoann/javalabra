@@ -1,19 +1,14 @@
 package sanaohjelma.sovelluslogiikka;
 
-import java.util.ArrayList;
-import java.util.Random;
+import java.text.DecimalFormat;
 
 public class Tilasto {
-    private MokausMuistio suomi;
-    private MokausMuistio vieras;
     private int kysytytSanat;
     private int vaaratVastaukset;
 
     public Tilasto(int kysytytSanat, int vaaratVastaukset) {
-        this.suomi = new MokausMuistio();
-        this.vieras = new MokausMuistio();
-        this.vaaratVastaukset = kysytytSanat;
-        this.kysytytSanat = vaaratVastaukset;
+        this.kysytytSanat = kysytytSanat;
+        this.vaaratVastaukset = vaaratVastaukset;
     }
     
     public void kasvataSanamaaraa() {
@@ -28,35 +23,29 @@ public class Tilasto {
         this.vaaratVastaukset++;
     }
     
-    public int mokatut() {
+    public int mokausmaara() {
         return this.vaaratVastaukset;
     }
     
-    public int mokauskerrat() {        
-        return this.suomi.mokauskerrat() + this.vieras.mokauskerrat();
-    }
-    
     public double voittoprosentti() {
-        int oikeinVastatutKerrat = sanamaara() - mokatut();
+        int oikeinVastatutKerrat = sanamaara() - mokausmaara();
         
         double voitto = 100 * oikeinVastatutKerrat / (double)sanamaara();
     
         return voitto;
     }
     
-    public MokausMuistio annaMuistio(String kieli) {
-        if (kieli.equals("suomi")) {
-            return this.suomi;
-        }
-        return this.vieras;
+    public String pyoristaDesimaali(double arvo) {
+        DecimalFormat formatoija = new DecimalFormat("#.##");
+        return formatoija.format(arvo);
     }
     
     public String toString() {
         String tilasto = "";
         
-        tilasto += "Sanoja on kysytty yhteensä: " + this.kysytytSanat + " kpl \n";
-        tilasto += "Oikeita vastauksia: " + (this.kysytytSanat - this.mokatut()) + " kpl \n";
-        tilasto += "Voittoprosentti: " + this.voittoprosentti() + " %";
+        tilasto += "Sanoja on kysytty yhteensä: " + this.kysytytSanat + " kpl\n";
+        tilasto += "Oikeita vastauksia: " + (this.kysytytSanat - this.mokausmaara()) + " kpl\n";
+        tilasto += "Voittoprosentti: " + pyoristaDesimaali(this.voittoprosentti()) + " %";
         
         return tilasto;
     }

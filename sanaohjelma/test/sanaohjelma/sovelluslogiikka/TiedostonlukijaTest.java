@@ -9,27 +9,28 @@ import sanaohjelma.sovelluslogiikka.Sanat;
 import sanaohjelma.sovelluslogiikka.Tiedostonlukija;
 
 public class TiedostonlukijaTest {
-
     Tiedostonlukija lukija;
+    File tiedosto;
 
     @Before
     public void setUp() {
-        lukija = new Tiedostonlukija(new File("test/sanaohjelma/sovelluslogiikka/testitiedosto"));
+        lukija = new Tiedostonlukija();
+        tiedosto = new File("test/sanaohjelma/sovelluslogiikka/testitiedosto.txt");
     }
 
     @Test
     public void lueTiedostoEiPalautaNullKunTiedostoEiTyhja() {
-        assertNotNull(lukija.lueTiedosto());
+        assertNotNull(lukija.lueTiedosto(tiedosto));
     }
 
     @Test
     public void lueTiedostoPalauttaaSanatLuokanOlion() {
-        assertTrue(lukija.tuoSanat() instanceof Sanat);
+        assertTrue(lukija.tuoSanat(tiedosto) instanceof Sanat);
     }
 
     @Test
     public void lueTiedostoTallentaaSanaparitOikeinSanatOlioon() {
-        assertEquals(lukija.tuoSanat().kaannaVieraaseen("a"), "b");
-        assertEquals(lukija.tuoSanat().kaannaVieraaseen("ab"), "ba");
+        assertEquals(lukija.tuoSanat(tiedosto).kaannaKielelle2("a"), "b");
+        assertEquals(lukija.tuoSanat(tiedosto).kaannaKielelle2("ab"), "ba");
     }
 }

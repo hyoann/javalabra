@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 import sanaohjelma.sovelluslogiikka.Kayttaja;
 import sanaohjelma.sovelluslogiikka.Kayttajat;
+import sanaohjelma.sovelluslogiikka.Mokailut;
 import sanaohjelma.sovelluslogiikka.Sanat;
 import sanaohjelma.sovelluslogiikka.Sanavalitsin;
 import sanaohjelma.sovelluslogiikka.Tarkistaja;
@@ -17,6 +18,8 @@ public class Sanaohjelma {
     private Sanat sanat;
     private Kayttajat kayttajat;
     private Kayttaja kayttaja;
+    private Mokailut mokailut;
+    private Sanavalitsin valitsin;
 
     public Sanaohjelma(Tiedostonlukija tiedostonlukija) {
         this.tiedostonlukija = tiedostonlukija;
@@ -24,25 +27,29 @@ public class Sanaohjelma {
         this.kayttajat = tiedostonlukija.tuoKayttajat(new File("src/sanaohjelma/kayttajat.txt"));
         this.kayttaja = null;
         this.tilasto = null;
+        this.mokailut = new Mokailut();
+        this.valitsin = null;
     }
 
-    public boolean vastausOikein(String kysyttySana, String annettuVastaus, String kieli) {
+    public boolean vastausOikein(String kysyttySana, String annettuVastaus, String kieli) {    
         Tarkistaja tarkistaja = new Tarkistaja(this.sanat, kieli);
-        tilasto.kasvataSanamaaraa();
         
         if (tarkistaja.vastausOikein(kysyttySana, annettuVastaus)) {
             //sana voidaan poistaa mokattujen sanojen listalta
-            tilasto.annaMuistio(kieli).poistaSana(kysyttySana);
+            this.mokailut.poistaSana(kieli, kysyttySana);
             return true;
         }
-        tilasto.kasvataMokattuja();
-        tilasto.annaMuistio(kieli).lisaaSana(kysyttySana);
+        this.tilasto.kasvataMokattuja();
+        this.mokailut.lisaaSana(kieli, kysyttySana);
         return false;
     }
 
+    public void asetaToistotiheys(int toistotiheys) {
+        valitsin = new Sanavalitsin(toistotiheys, tilasto, sanat, mokailut);
+    }
+    
     public String annaSana(String kieli) {
         tilasto.kasvataSanamaaraa();
-        Sanavalitsin valitsin = new Sanavalitsin(3, tilasto, sanat);
         return valitsin.annaSana(kieli);
     }
 
@@ -60,10 +67,10 @@ public class Sanaohjelma {
         return this.kayttaja.getTilasto();
     }
     
-    public void lisaaSanapari(String suomi, String vieras) {
+    public void lisaaSanapari(String kieli1, String kieli2) {
         TiedostoonKirjoittaja kirjoittaja = new TiedostoonKirjoittaja();
-        this.sanat.lisaa(suomi, vieras);
-        kirjoittaja.tallennaSanapari("src/sanaohjelma/sanat.txt", suomi, vieras);
+        this.sanat.lisaa(kieli1, kieli2);
+        kirjoittaja.tallennaSanapari("src/sanaohjelma/sanat.txt", kieli1, kieli2);
     }
     
     public Kayttaja haeKayttaja(String tunnus, String salasana) {
@@ -100,9 +107,9 @@ public class Sanaohjelma {
         return this.tilasto.toString();
     }
     
-//    public void tallennaTilasto(String kayttaja, Tilasto tilasto) {
-//        TiedostoonKirjoittaja kirjoittaja = new TiedostoonKirjoittaja();
-//        kirjoittaja.tallennaTilasto(kayttaja, tilasto);
-//    }
+    public void tallennaTilasto() {
+        TiedostoonKirjoittaja kirjoittaja = new TiedostoonKirjoittaja();
+        kirjoittaja.paivitaKayttajanTilasto(this.kayttajat);
+    }
  
 }

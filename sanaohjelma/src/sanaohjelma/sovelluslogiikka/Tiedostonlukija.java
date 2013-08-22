@@ -50,7 +50,7 @@ public class Tiedostonlukija {
             
             Tilasto tilasto = new Tilasto(kysytytSanat, mokatut);
             
-            Kayttaja kayttaja = new Kayttaja(tiedot[1], tiedot[2], tilasto);
+            Kayttaja kayttaja = new Kayttaja(tiedot[0], tiedot[1], tiedot[2], tilasto);
             
             kayttajat.lisaaKayttaja(tiedot[0], kayttaja);
         }
