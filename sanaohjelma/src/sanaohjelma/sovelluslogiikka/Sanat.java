@@ -36,13 +36,15 @@ public class Sanat {
      * 
      * @param sanaKielella1 Sana jonka käyttäjä haluaa poistaa.
      */
-    public void poista(String sanaKielella1) {
+    public boolean poista(String sanaKielella1) {
         String sanaKielella2 = this.kaannaKielelle2(sanaKielella1);
         
-        if (sanaKielella2 != null) {
+        if (sanaKielella1!= null && sanaKielella2 != null) {
             ekaToka.remove(sanaKielella1);
             tokaEka.remove(sanaKielella2);
+            return true;
         }
+        return false;
    }
     
     /**
@@ -75,6 +77,10 @@ public class Sanat {
      * @return Satunnaisesti arvottu sana.
      */
     public String annaJokuSana(String kieli) {
+        if (this.sanojenMaara() == 0) {
+            return null;
+        }
+        
         Random arpoja = new Random();
         int indeksi = arpoja.nextInt(ekaToka.size());
         

@@ -24,6 +24,13 @@ public class Kayttaja {
         this.salasana = salasana;
         this.tilasto = tilasto;        
     }
+    
+    public Kayttaja(String tunnus, String salasana, String nimi) {
+        this.tunnus = tunnus;
+        this.nimi = nimi;
+        this.salasana = salasana;
+        this.tilasto = new Tilasto();
+    }
 
     public String getTunnus() {
         return this.tunnus;
@@ -52,6 +59,6 @@ public class Kayttaja {
     
     public String toString() {
         return this.getTunnus() +", " + this.getNimi() + ", " + 
-                this.getSalasana() + ", " + this.getTilasto().sanamaara() + ", " + this.getTilasto().mokausmaara();
+                this.getSalasana() + ", " + this.getTilasto().sanamaara() + ", " + this.getTilasto().oikeinVastattu();
     }
 }

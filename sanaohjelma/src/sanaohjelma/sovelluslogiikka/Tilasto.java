@@ -4,11 +4,16 @@ import java.text.DecimalFormat;
 
 public class Tilasto {
     private int kysytytSanat;
-    private int vaaratVastaukset;
+    private int oikeatVastaukset;
 
-    public Tilasto(int kysytytSanat, int vaaratVastaukset) {
+    public Tilasto(int kysytytSanat, int oikeatVastaukset) {
         this.kysytytSanat = kysytytSanat;
-        this.vaaratVastaukset = vaaratVastaukset;
+        this.oikeatVastaukset = oikeatVastaukset;
+    }
+    
+    public Tilasto() {
+        this.kysytytSanat = 0;
+        this.oikeatVastaukset = 0;
     }
     
     public void kasvataSanamaaraa() {
@@ -19,18 +24,16 @@ public class Tilasto {
         return this.kysytytSanat;
     }
     
-    public void kasvataMokattuja() {
-        this.vaaratVastaukset++;
+    public void kasvataOikeita() {
+        this.oikeatVastaukset++;
     }
     
-    public int mokausmaara() {
-        return this.vaaratVastaukset;
+    public int oikeinVastattu() {
+        return this.oikeatVastaukset;
     }
     
-    public double voittoprosentti() {
-        int oikeinVastatutKerrat = sanamaara() - mokausmaara();
-        
-        double voitto = 100 * oikeinVastatutKerrat / (double)sanamaara();
+    public double voittoprosentti() {     
+        double voitto = 100 * oikeinVastattu() / (double)sanamaara();
     
         return voitto;
     }
@@ -44,7 +47,7 @@ public class Tilasto {
         String tilasto = "";
         
         tilasto += "Sanoja on kysytty yhteensä: " + this.kysytytSanat + " kpl\n";
-        tilasto += "Oikeita vastauksia: " + (this.kysytytSanat - this.mokausmaara()) + " kpl\n";
+        tilasto += "Oikeita vastauksia: " + this.oikeinVastattu() + " kpl\n";
         tilasto += "Voittoprosentti: " + pyoristaDesimaali(this.voittoprosentti()) + " %";
         
         return tilasto;

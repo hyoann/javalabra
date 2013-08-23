@@ -69,7 +69,7 @@ public class TiedostoonKirjoittaja {
      * 
      * @param kayttajat Järjestelmän käyttäjät
      */
-    public void paivitaKayttajanTilasto(Kayttajat kayttajat) {
+    public void paivitaKayttajatTiedostoon(Kayttajat kayttajat) {
         this.kirjoitaTiedostoon("src/sanaohjelma/kayttajat.txt", kayttajat.toString() );
     }
 }

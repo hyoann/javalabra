@@ -44,7 +44,7 @@ public class Tiedostonlukija {
         for (String rivi : rivit) {           
             String[] tiedot = rivi.split(", ");
             
-            //Tiedot ovat tiedostossa muodossa 'tunnus, nimi, salasana, kysytytSanat, mokatut'
+            //Tiedot ovat tiedostossa muodossa 'tunnus, nimi, salasana, kysytytSanat, oikeat vastaukset'
             int kysytytSanat = Integer.parseInt(tiedot[3]);
             int mokatut = Integer.parseInt(tiedot[4]);
             
@@ -57,7 +57,8 @@ public class Tiedostonlukija {
         return kayttajat;
     }
 
-    public Sanat tuoSanat(File tiedosto) {
+    public Sanat tuoSanat(String tiedostonNimi) {
+        File tiedosto = new File("src/sanaohjelma/Sanatiedostot/" + tiedostonNimi);
         ArrayList<String> rivit = this.lueTiedosto(tiedosto);
         Sanat sanat = tallennaSanaparit(rivit);
         return sanat;

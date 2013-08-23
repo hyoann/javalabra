@@ -4,112 +4,151 @@ import java.io.File;
 import java.util.ArrayList;
 import sanaohjelma.sovelluslogiikka.Kayttaja;
 import sanaohjelma.sovelluslogiikka.Kayttajat;
-import sanaohjelma.sovelluslogiikka.Mokailut;
+import sanaohjelma.sovelluslogiikka.MokausMuistio;
 import sanaohjelma.sovelluslogiikka.Sanat;
 import sanaohjelma.sovelluslogiikka.Sanavalitsin;
 import sanaohjelma.sovelluslogiikka.Tarkistaja;
 import sanaohjelma.sovelluslogiikka.Tiedostonlukija;
 import sanaohjelma.sovelluslogiikka.TiedostoonKirjoittaja;
-import sanaohjelma.sovelluslogiikka.Tilasto;
 
 public class Sanaohjelma {
-    private Tilasto tilasto;
-    private Tiedostonlukija tiedostonlukija;
+
     private Sanat sanat;
-    private Kayttajat kayttajat;
+    private Tiedostonlukija tiedostonlukija;
     private Kayttaja kayttaja;
-    private Mokailut mokailut;
-    private Sanavalitsin valitsin;
+    private Kayttajat kayttajat;
+    private MokausMuistio muistio;
 
     public Sanaohjelma(Tiedostonlukija tiedostonlukija) {
+        this.sanat = null;
         this.tiedostonlukija = tiedostonlukija;
-        this.sanat = tiedostonlukija.tuoSanat(new File("src/sanaohjelma/Sanatiedostot/sanat.txt"));
-        this.kayttajat = tiedostonlukija.tuoKayttajat(new File("src/sanaohjelma/kayttajat.txt"));
         this.kayttaja = null;
-        this.tilasto = null;
-        this.mokailut = new Mokailut();
-        this.valitsin = null;
+        this.kayttajat = tiedostonlukija.tuoKayttajat(new File("src/sanaohjelma/kayttajat.txt"));
+        this.muistio = new MokausMuistio();
     }
 
-    public boolean vastausOikein(String kysyttySana, String annettuVastaus, String kieli) {    
-        Tarkistaja tarkistaja = new Tarkistaja(this.sanat, kieli);
+    public boolean lisaaKayttaja(String tunnus, String salasana, String nimi) {
+        Kayttaja kayttaja = new Kayttaja(tunnus, salasana, nimi);
         
-        if (tarkistaja.vastausOikein(kysyttySana, annettuVastaus)) {
-            //sana voidaan poistaa mokattujen sanojen listalta
-            this.mokailut.poistaSana(kieli, kysyttySana);
+        if (this.kayttajat.lisaaKayttaja(tunnus, kayttaja)) {
+            TiedostoonKirjoittaja kirjoittaja = new TiedostoonKirjoittaja();
+            kirjoittaja.paivitaKayttajatTiedostoon(this.kayttajat);
             return true;
+        } else {
+            return false;
         }
-        this.tilasto.kasvataMokattuja();
-        this.mokailut.lisaaSana(kieli, kysyttySana);
-        return false;
     }
 
-    public void asetaToistotiheys(int toistotiheys) {
-        valitsin = new Sanavalitsin(toistotiheys, tilasto, sanat, mokailut);
-    }
-    
-    public String annaSana(String kieli) {
-        tilasto.kasvataSanamaaraa();
-        return valitsin.annaSana(kieli);
-    }
-
-    public String naytaSanat() {
-        return this.sanat.toString();
-    }
-    
-    public String haeOikeaVastaus(String sana, String kieli) {
-        Tarkistaja tarkistaja = new Tarkistaja(this.sanat, kieli);
-        
-        return tarkistaja.haeOikeaVastaus(sana);
-    }
-    
-    public Tilasto tilasto() {
-        return this.kayttaja.getTilasto();
-    }
-    
-    public void lisaaSanapari(String kieli1, String kieli2) {
-        TiedostoonKirjoittaja kirjoittaja = new TiedostoonKirjoittaja();
-        this.sanat.lisaa(kieli1, kieli2);
-        kirjoittaja.tallennaSanapari("src/sanaohjelma/sanat.txt", kieli1, kieli2);
-    }
-    
     public Kayttaja haeKayttaja(String tunnus, String salasana) {
-       this.kayttaja = this.kayttajat.haeKayttaja(tunnus, salasana);
-       
-       this.tilasto = this.kayttaja.getTilasto();
-       return this.kayttaja;
-       }
-      
-    public void poistaSana(String sana) {
-        TiedostoonKirjoittaja kirjoittaja = new TiedostoonKirjoittaja();
-        sanat.poista(sana);
-        
-        kirjoittaja.paivitaSanatTiedostossa(this.sanat);
+        Kayttaja kayttaja = kayttajat.haeKayttaja(tunnus, salasana);
+
+        if (kayttaja != null) {
+            this.kayttaja = kayttaja;
+        }
+
+        return this.kayttaja;
     }
-    
-    public int sanojenMaara() {
-        return this.sanat.sanojenMaara();
-    }
-    
-    public ArrayList<String> tiedostojenNimet() {
-        return this.tiedostonlukija.tiedostojenNimet();
-    }
-    
-    public void valitseTiedostot(String nimi) {
-       this.sanat = tiedostonlukija.tuoSanat(new File("src/sanaohjelma/Sanatiedostot/" + nimi));
-    }
-    
+
     public String kayttajanNimi() {
         return this.kayttaja.getNimi();
     }
-    
+
     public String kayttajanTilasto() {
-        return this.tilasto.toString();
+        return this.kayttaja.tilasto();
     }
-    
+
     public void tallennaTilasto() {
         TiedostoonKirjoittaja kirjoittaja = new TiedostoonKirjoittaja();
-        kirjoittaja.paivitaKayttajanTilasto(this.kayttajat);
+        kirjoittaja.paivitaKayttajatTiedostoon(this.kayttajat);
     }
- 
+    
+    public void kasvataOikeinVastattuja(int maara) {
+        this.kayttaja.getTilasto().kasvataOikeita();
+    }
+
+    public void asetaSanat(String tiedostonNimi) {
+        this.sanat = this.tiedostonlukija.tuoSanat(tiedostonNimi);
+    }
+
+    public boolean vastausOikein(String kysyttySana, String annettuVastaus, String kieli) {
+        Tarkistaja tarkistaja = new Tarkistaja(this.sanat, kieli);
+        if (tarkistaja.vastausOikein(kysyttySana, annettuVastaus)) {
+            this.kayttaja.getTilasto().kasvataOikeita();
+            return true;
+        }
+        return false;
+    }
+
+    public String kysySana(String kieli) {
+        Sanavalitsin valitsin = new Sanavalitsin(2, this.kayttaja.getTilasto(), this.sanat, this.muistio);
+        String kysyttavaSana = valitsin.annaSana(kieli);
+        if (kysyttavaSana != null) {
+            this.kayttaja.getTilasto().kasvataSanamaaraa();
+        }
+        return kysyttavaSana;
+    }
+
+    public String sanatMerkkijono() {
+        return this.sanat.toString();
+    }
+
+    public int sanojenMaara() {
+        return this.sanat.sanojenMaara();
+    }
+
+    public String haeOikeaVastaus(String sana, String kieli) {
+        Tarkistaja tarkistaja = new Tarkistaja(this.sanat, kieli);
+        return tarkistaja.haeOikeaVastaus(sana);
+    }
+
+    public void lisaaSanapari(String sana1, String sana2, String tiedostonNimi) {
+        TiedostoonKirjoittaja kirjoittaja = new TiedostoonKirjoittaja();
+        Sanat sanatTemp = this.tiedostonlukija.tuoSanat(tiedostonNimi);
+        sanatTemp.lisaa(sana1, sana2);
+        kirjoittaja.tallennaSanapari("src/sanaohjelma/Sanatiedostot/" + tiedostonNimi, sana1, sana2);
+    }
+
+    public boolean poistaSana(String sana, String tiedostonNimi) {
+        TiedostoonKirjoittaja kirjoittaja = new TiedostoonKirjoittaja();
+        Sanat sanatTemp = this.tiedostonlukija.tuoSanat(tiedostonNimi);
+
+        if (!sanatTemp.poista(sana)) {
+            return false;
+        }
+        kirjoittaja.paivitaSanatTiedostossa(sanatTemp);
+        return true;
+    }
+
+    public ArrayList<String> tiedostojenNimet() {
+        return this.tiedostonlukija.tiedostojenNimet();
+    }
+
+    public String haeTiedostonNimi(int indeksi) {
+        try {
+            return this.tiedostojenNimet().get(indeksi);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public String naytaSisalto(String tiedostonNimi) {
+        try {
+            return this.tiedostonlukija.tuoSanat(tiedostonNimi).toString();
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public boolean tiedostoPoistettu(String tiedostonNimi) {
+        File poistettava = new File("src/sanaohjelma/Sanatiedostot/" + tiedostonNimi);
+        return poistettava.delete();
+    }
+
+    public boolean tiedostoLisatty(String tiedostopolku) {
+        File alkuperainen = new File(tiedostopolku);
+        String nimi = alkuperainen.getName();
+
+        return alkuperainen.renameTo(new File("src/sanaohjelma/Sanatiedostot/" + nimi));
+
+    }
 }

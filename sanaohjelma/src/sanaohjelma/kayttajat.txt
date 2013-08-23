@@ -1,2 +1,6 @@
-mai, Maija, sala2, 4, 3
-mat, Matti, sala1, 18, 6
+testi, testaaja, testi1, 0, 0
+mai, Maija, sala2, 12, 3
+test, testeri, test2, 0, 0
+q, e, w, 13, 1
+a, c, b, 0, 0
+mat, Matti, sala1, 120, 34
