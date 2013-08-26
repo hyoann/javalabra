@@ -48,7 +48,7 @@ public class Tilasto {
         
         tilasto += "Sanoja on kysytty yhteensä: " + this.kysytytSanat + " kpl\n";
         tilasto += "Oikeita vastauksia: " + this.oikeinVastattu() + " kpl\n";
-        tilasto += "Voittoprosentti: " + pyoristaDesimaali(this.voittoprosentti()) + " %";
+        tilasto += "Voittoprosentti: " + pyoristaDesimaali(this.voittoprosentti()) + " %\n";
         
         return tilasto;
     }

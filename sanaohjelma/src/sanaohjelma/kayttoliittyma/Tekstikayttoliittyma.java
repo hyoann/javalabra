@@ -272,35 +272,6 @@ public class Tekstikayttoliittyma {
         kysySanat(kerrat, kaannettavaKieli);
     }
 
-    /**
-     * Metodi luo tehtävän, jossa pitäisi osata yhdistää oikeat sanaparit
-     * keskenään. Tehtävä voisi näyttää esimerkiksi seuraavalta:
-     *
-     * 1.kissa a.dog 2.koira b.bird 3.lintu c.cat
-     *
-     * Nyt oikeat vastaukset olisivat: 1c, 2a, 3b.
-     *
-     * Metodi hakee ensiksi sanoja ja tallentaa ne sanat-listaan. Samalla metodi
-     * tallentaa kaannokset-listaan sanat-listassa olevien sanojen indeksit.
-     * Kaannokset-lista näyttäisi siis esimerkin tapauksessa seuraavalta: [0, 1,
-     * 2]. Sekoitetaan kaannokset-lista, jolloin siitä tulisi esim. [1, 2, 0].
-     * Nämä luvut kuvaavat siis sanat-listassa olevien sanojen indeksejä. Näin
-     * sanojen käännökset saadaan tulostettua oikean puoleiseen listaan
-     * sekoitetussa järjestyksessä, kun valitaan indeksiä vastaava sana
-     * sanat-listasta ja sitten haetaan sen käännös. Samalla saadaan myös
-     * tulostettu sanan eteen oikea kirjain, kun muutetaan kaannokset-listan
-     * indeksit merkeiksi alkaen esim. a:sta (a:ta vastaa merkkikoodi on 97,
-     * b:tä 98 jne.). Nyt saadaan tulostettu siis ylläolevan näköinen taulukko.
-     *
-     * Vastauksia tarkistettaessa verrataan annettua lukua ja kirjainta
-     * keskenään. Jos vastaus on esimerkiksi 1c, haetaan kaanokset-taulukosta
-     * "kohdassa c" oleva "käännös". Koska c:tä vastaa merkkikoodi 99,
-     * tiedetään, että käyttäjä viittaa "käännökseen", joka sijaitsee
-     * kaannokset-listan indeksissä 2 (99-97 = 2). Tältä kohdalta löydetään
-     * sanat-listan indeksi, eli sanan indeksi, jonka perusteella käyttäjälle
-     * näytettiin käännetty sana. Jos tämä indeksi vastaa käyttäjän vastauksessa
-     * antamaa ekaa lukua, on vastaus oikein.
-     */
     public void yhdistaSanat() {
         int maara = -99;
 
@@ -308,8 +279,8 @@ public class Tekstikayttoliittyma {
             System.out.println("Monta sanaparia annetaan? (Maksimi on 26)");
             try {
                 maara = Integer.parseInt(lukija.nextLine());
-                if (maara < 2 ||  maara > 26) {
-                    System.out.println("Luvun pitää olal väliltä 2 - 26");
+                if (maara < 2 || maara > 26) {
+                    System.out.println("Luvun pitää olla väliltä 2 - 26");
                     continue;
                 }
                 break;
@@ -319,87 +290,60 @@ public class Tekstikayttoliittyma {
         }
 
         if (maara > this.ohjelma.sanojenMaara()) {
-            System.out.println("Järjestelmässä ei ole niin paljon sanapareja. Kysytään " + this.ohjelma.sanojenMaara() + " sanaa.");
+            System.out.println("Tiedostossa ei ole niin paljon sanapareja. Kysytään " + this.ohjelma.sanojenMaara() + " sanaa.");
             maara = this.ohjelma.sanojenMaara();
         }
 
-        ArrayList<String> sanat = new ArrayList<String>();
-        ArrayList<Integer> kaannokset = new ArrayList<Integer>();
-
-
-        int kierros = 0;
-
-        while (kierros < maara) {
-            String sana = this.ohjelma.kysySana(Kielet.kieli1);
-
-            if (sanat.contains(sana)) {
-                continue;
-            }
-            sanat.add(sana);
-            kaannokset.add(kierros);
-            kierros++;
-        }
-
-        Collections.shuffle(kaannokset);
-
-        System.out.println("Yhdistä: ");
-        System.out.println("");
-        tulostaListat(kaannokset, sanat);
-        System.out.println("");
-
-        System.out.println("Anna vastaukset muodossa '1a':");
-        int oikein = vastaukset(kaannokset);
-
-        tulos(oikein, maara, kaannokset);
+        this.tulostaListat(maara);
+        int oikein = this.kysyVastaukset(maara);
+        this.tulos(oikein, maara);
     }
 
     /**
      *
      */
-    public void tulostaListat(ArrayList<Integer> kaannokset, ArrayList<String> sanat) {
-        for (int i = 0; i < kaannokset.size(); i++) {
-            String kaannos = this.ohjelma.haeOikeaVastaus(sanat.get(kaannokset.get(i)), Kielet.kieli1);
-            System.out.println(i + 1 + "." + sanat.get(i) + "  " + (char) (i + 97) + "." + kaannos);
+    public void tulostaListat(int maara) {
+        //sanat-listassa on sanoja muodossa 1.kissa 2.koira 3.hevonen
+        ArrayList<String> sanat = this.ohjelma.haeSanatNumerolla(maara);
+        //kaannokset-listassa on sanat-listassa olevien sanojen käännöksiä muodossa a.cat b.horse c.dog
+        ArrayList<String> kaannokset = this.ohjelma.haeKaannoksetKirjaimella();
+
+        System.out.println("Yhdistä: ");
+        System.out.println("");
+
+        for (int i = 0; i < sanat.size(); i++) {
+            System.out.println(sanat.get(i) + " " + kaannokset.get(i));
         }
+        System.out.println("");
     }
 
-    public int vastaukset(ArrayList<Integer> kaannokset) {
+    public int kysyVastaukset(int maara) {
+        System.out.println("Anna vastaukset muodossa '1a':");
         int oikein = 0;
-        for (int i = 0; i < kaannokset.size(); i++) {
+
+        for (int i = 0; i < maara; i++) {
             String vastaus = lukija.nextLine();
+
             if (vastaus.isEmpty()) {
                 continue;
             }
-            //jos vastaus muodossa 1a, kohdassa a olevan arvon pitää vastata nyt ykköstä jotta vastaus oikein
-            int kohta = (int) vastaus.charAt(vastaus.length() - 1) - 97;
-            int sananIndeksi = -99;
 
-            try {
-                sananIndeksi = Integer.parseInt(vastaus.substring(0, vastaus.length() - 1)) - 1;
-                if (sananIndeksi == kaannokset.get(kohta)) {
-                    oikein++;
-                    this.ohjelma.kasvataOikeinVastattuja(oikein);
-                }
-            } catch (Exception e) {
+            if (this.ohjelma.tarkistaVastaus(vastaus)) {
+                oikein++;
             }
         }
         return oikein;
     }
 
-    public void tulos(int oikein, int maara, ArrayList<Integer> kaannokset) {
+    public void tulos(int oikein, int maara) {
         System.out.println("Sait oikein " + oikein + "/" + maara);
-        System.out.print("Oikea rivi: ");
-        for (int i = 0; i < kaannokset.size(); i++) {
-            System.out.print(kaannokset.get(i) + 1 + "" + (char) (i + 97));
-            System.out.print(" ");
-        }
+        System.out.print("Oikea rivi: " + this.ohjelma.oikeaRivi());
         System.out.println("");
     }
 
     public void lopetus() {
         System.out.println("Tietosi:");
         System.out.println(this.ohjelma.kayttajanTilasto());
-
         this.ohjelma.tallennaTilasto();
     }
 }

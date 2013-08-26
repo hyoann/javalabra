@@ -10,6 +10,7 @@ import sanaohjelma.sovelluslogiikka.Sanavalitsin;
 import sanaohjelma.sovelluslogiikka.Tarkistaja;
 import sanaohjelma.sovelluslogiikka.Tiedostonlukija;
 import sanaohjelma.sovelluslogiikka.TiedostoonKirjoittaja;
+import sanaohjelma.sovelluslogiikka.YhdistaSanat;
 
 public class Sanaohjelma {
 
@@ -18,6 +19,7 @@ public class Sanaohjelma {
     private Kayttaja kayttaja;
     private Kayttajat kayttajat;
     private MokausMuistio muistio;
+    private YhdistaSanat yhdista;
 
     public Sanaohjelma(Tiedostonlukija tiedostonlukija) {
         this.sanat = null;
@@ -25,6 +27,7 @@ public class Sanaohjelma {
         this.kayttaja = null;
         this.kayttajat = tiedostonlukija.tuoKayttajat(new File("src/sanaohjelma/kayttajat.txt"));
         this.muistio = new MokausMuistio();
+        this.yhdista = null;
     }
 
     public boolean lisaaKayttaja(String tunnus, String salasana, String nimi) {
@@ -149,6 +152,34 @@ public class Sanaohjelma {
         String nimi = alkuperainen.getName();
 
         return alkuperainen.renameTo(new File("src/sanaohjelma/Sanatiedostot/" + nimi));
-
+    }
+    
+    public ArrayList<String> haeSanatNumerolla(int maara) {
+        //aloitetaan tehtävä joten luodaan tehtävä-olio
+        this.yhdista = new YhdistaSanat(this.sanat);
+        this.yhdista.taytaListat(maara);
+        System.out.println(this.yhdista.palautaSanatNumerolla());
+        return this.yhdista.palautaSanatNumerolla();
+    }
+    
+    public ArrayList<String> haeKaannoksetKirjaimella() {
+        System.out.println(this.yhdista.palautaKaannoksetKirjaimella());
+       return this.yhdista.palautaKaannoksetKirjaimella();
+    }
+    
+    public boolean tarkistaVastaus(String vastaus) {
+        return this.yhdista.tarkista(vastaus);
+    }
+    
+    public String oikeaRivi() {
+        String oikeaRivi = this.yhdista.oikeatVastaukset();
+        //haettiin oikea rivi, joten tehtävä lopetetetaan ja olio voidaan nollata
+        this.yhdista = null;
+        
+        return oikeaRivi;
+    }
+    
+    public void kirjaaKayttajaUlos() {
+        this.kayttaja = null;
     }
 }
