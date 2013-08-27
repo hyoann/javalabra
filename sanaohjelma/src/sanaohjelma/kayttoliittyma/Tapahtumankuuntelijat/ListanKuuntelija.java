@@ -22,6 +22,7 @@ public class ListanKuuntelija implements ListSelectionListener{
         this.frame = frame;
         this.ohjelma = ohjelma;
         this.tiedostot = tiedostot;
+       
     }
     
     @Override
@@ -40,8 +41,8 @@ public class ListanKuuntelija implements ListSelectionListener{
             panel.add(new JLabel("<html>" + rivit + "</html>"));
             
             JScrollPane skrollattava = new JScrollPane(panel);
-            skrollattava.setPreferredSize(new Dimension(300, 400));
-            this.frame.getContentPane().add(skrollattava, BorderLayout.CENTER);
+            skrollattava.setPreferredSize(new Dimension(400, 500));
+            this.frame.getContentPane().add(skrollattava, BorderLayout.EAST);
             
             this.frame.validate();
         }

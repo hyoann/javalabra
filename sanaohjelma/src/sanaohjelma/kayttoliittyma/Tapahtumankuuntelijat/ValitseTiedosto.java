@@ -1,5 +1,5 @@
 
-package sanaohjelma.kayttoliittyma;
+package sanaohjelma.kayttoliittyma.Tapahtumankuuntelijat;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -37,7 +37,7 @@ public class ValitseTiedosto implements ActionListener {
             JButton kylla = new JButton("Kyllä");
             JButton ei = new JButton("Ei");
            
-            TiedostonLisays lisays = new TiedostonLisays(this.frame, this.ohjelma, tiedosto, panel);
+            TiedostonLisays lisays = new TiedostonLisays(this.frame, this.ohjelma, tiedosto);
             kylla.addActionListener(lisays);
             ei.addActionListener(lisays);
             

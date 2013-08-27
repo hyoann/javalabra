@@ -1,5 +1,6 @@
 package sanaohjelma.kayttoliittyma;
 
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -34,6 +35,8 @@ public class Kirjautuminen extends JPanel {
         this.add(nappi);
         
         this.setOpaque(false);
+        
+        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         
         nappi.addActionListener(new KirjautumisenTunnistaja(this.frame, tunnus, salasana, this.ohjelma));
     }

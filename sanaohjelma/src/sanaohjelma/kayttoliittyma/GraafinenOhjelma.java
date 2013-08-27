@@ -3,6 +3,7 @@ package sanaohjelma.kayttoliittyma;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 import sanaohjelma.Sanaohjelma;
@@ -32,8 +33,8 @@ public class GraafinenOhjelma implements Runnable {
     }
 
     private void luoKomponentit(Container container) {
-//        container.add(new Kirjautuminen(this.frame, this.ohjelma));
-        container.add(new YllapitoGraafinen(this.frame, this.ohjelma));
+        container.add(new Kirjautuminen(this.frame, this.ohjelma));
+        //container.add(new YllapitoGraafinen(this.frame, this.ohjelma));
 
     }
 

@@ -32,7 +32,9 @@ public class ValikonKuuntelija implements ActionListener {
             KysyKerrat kerrat = new KysyKerrat(this.frame, this.ohjelma);
             kerrat.setVisible(true);
         } else if (e.getActionCommand().equals("Näytä omat tiedot")) {
-           this.frame.add(new KayttajanTiedot(this.ohjelma));
+            //KayttajanTiedot tiedot = new KayttajanTiedot(this.ohjelma);
+            this.frame.repaint();
+            this.frame.add(new KayttajanTiedot(this.ohjelma));
             this.frame.validate();
         } else if (e.getActionCommand().equals("Kirjaudu ulos")) {
             Lopetus lopetus = new Lopetus(this.frame, this.ohjelma);
