@@ -160,7 +160,7 @@ public class Yllapito {
         String vastaus = lukija.nextLine();
 
         if (vastaus.equals("K")) {
-            if (this.ohjelma.tiedostoPoistettu(tiedostonNimi)) {
+            if (this.ohjelma.poistaTiedosto(tiedostonNimi)) {
                 System.out.println("Tiedoston poisto onnistui!");
                 return true;
             } else {
@@ -179,7 +179,7 @@ public class Yllapito {
 
         System.out.println("");
 
-        if (this.ohjelma.tiedostoLisatty(sijainti)) {
+        if (this.ohjelma.lisaaTiedosto(sijainti)) {
             System.out.println("Tiedoston lisäys onnistui!");
         } else {
             System.out.println("Tiedoston lisäys epäonnistui.");

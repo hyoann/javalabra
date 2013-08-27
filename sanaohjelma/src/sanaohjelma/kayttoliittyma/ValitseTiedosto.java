@@ -28,14 +28,18 @@ public class ValitseTiedosto implements ActionListener {
          int returnVal = tiedostot.showOpenDialog(this.frame);
          
          if (returnVal == JFileChooser.APPROVE_OPTION) {
-            File file = tiedostot.getSelectedFile();
-             System.out.println(file.getName());
+            File tiedosto = tiedostot.getSelectedFile();
+             System.out.println(tiedosto.getName());
              
             JPanel panel = new JPanel();
-            JLabel valittu = new JLabel(file.getName());
+            JLabel valittu = new JLabel(tiedosto.getName());
             JLabel lisataanko = new JLabel("Lisätäänkö tiedosto?");
             JButton kylla = new JButton("Kyllä");
             JButton ei = new JButton("Ei");
+           
+            TiedostonLisays lisays = new TiedostonLisays(this.frame, this.ohjelma, tiedosto, panel);
+            kylla.addActionListener(lisays);
+            ei.addActionListener(lisays);
             
             panel.add(valittu);
             panel.add(lisataanko);

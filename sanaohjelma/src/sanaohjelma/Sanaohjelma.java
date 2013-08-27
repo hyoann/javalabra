@@ -142,12 +142,12 @@ public class Sanaohjelma {
         }
     }
 
-    public boolean tiedostoPoistettu(String tiedostonNimi) {
+    public boolean poistaTiedosto(String tiedostonNimi) {
         File poistettava = new File("src/sanaohjelma/Sanatiedostot/" + tiedostonNimi);
         return poistettava.delete();
     }
 
-    public boolean tiedostoLisatty(String tiedostopolku) {
+    public boolean lisaaTiedosto(String tiedostopolku) {
         File alkuperainen = new File(tiedostopolku);
         String nimi = alkuperainen.getName();
 
