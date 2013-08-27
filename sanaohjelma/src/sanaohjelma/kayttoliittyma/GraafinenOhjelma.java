@@ -25,7 +25,6 @@ public class GraafinenOhjelma implements Runnable {
         frame.setPreferredSize(new Dimension(900, 500));
 
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.getContentPane().setBackground(Color.CYAN.darker());
         luoKomponentit(frame.getContentPane());
 
         frame.pack();

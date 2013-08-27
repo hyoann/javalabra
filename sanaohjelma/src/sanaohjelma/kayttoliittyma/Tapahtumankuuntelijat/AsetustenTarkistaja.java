@@ -1,5 +1,6 @@
 package sanaohjelma.kayttoliittyma.Tapahtumankuuntelijat;
 
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Enumeration;
@@ -15,6 +16,7 @@ import sanaohjelma.Sanaohjelma;
 import sanaohjelma.kayttoliittyma.Kaannostehtava;
 
 public class AsetustenTarkistaja implements ActionListener {
+
     private JTextField kerrat;
     private ButtonGroup vaihtoehdot;
     private JFrame frame;
@@ -37,9 +39,9 @@ public class AsetustenTarkistaja implements ActionListener {
             dialogi.setVisible(false);
             return;
         }
-        
+
         String kieli = this.tarkistaKieli();
-       
+
         if (kieli == null) {
             return;
         }
@@ -52,10 +54,27 @@ public class AsetustenTarkistaja implements ActionListener {
 
         dialogi.setVisible(false);
 
+        if (this.lista.getSelectedValue() == null) {
+            JOptionPane.showMessageDialog(this.frame, "Valitse tiedosto!", "Virhe", JOptionPane.ERROR_MESSAGE);
+        }
+
         System.out.println("lista: " + lista);
+
+        //tyhjennetään valikon alapuoli, jos siellä on jotain
+        Component[] komponentit = this.frame.getContentPane().getComponents();
+        System.out.println("Komponenttien määrä (AsetustenTarkistaja): " + this.frame.getContentPane().getComponentCount());
+    
+        if (komponentit.length > 7) {
+            for (int i = 7; i < komponentit.length; i++) {
+                this.frame.remove(komponentit[i]);
+                this.frame.validate();
+            }
+        }
+        
+        
         Kaannostehtava tehtava = new Kaannostehtava(this.frame, this.ohjelma, kieli, annetutKerrat);
 
-        this.frame.add(tehtava);
+        this.frame.getContentPane().add(tehtava);
         this.frame.validate();
     }
 

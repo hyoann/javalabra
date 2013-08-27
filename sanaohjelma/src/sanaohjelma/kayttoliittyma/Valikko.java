@@ -31,6 +31,7 @@ public class Valikko extends JPanel{
         JList lista = new JList(this.ohjelma.tiedostojenNimet().toArray());
         
         lista.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
         
         ValikonKuuntelija kuuntelija = new ValikonKuuntelija(this.ohjelma, this.frame, lista);
         
