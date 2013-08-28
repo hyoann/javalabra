@@ -31,19 +31,23 @@ public class TiedostonMuokkaaja implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         String tiedostonNimi = this.tiedostot.getSelectedValue().toString();
         
-        if (e.getActionCommand().equals("Lisaa")) {
-            if (this.lisattavaKielella1.getText() == null || this.lisattavaKielella2 == null) {
+        if (e.getActionCommand().equals("Lisää")) {
+            if (this.lisattavaKielella1.getText().isEmpty() || this.lisattavaKielella2.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(this.frame, "Sana ei voi olla tyhjä!", "Virhe", JOptionPane.ERROR_MESSAGE);
             } else {
-                this.ohjelma.lisaaSanapari(this.lisattavaKielella1.getText(), this.lisattavaKielella1.getText(), tiedostonNimi);
+                this.ohjelma.lisaaSanapari(this.lisattavaKielella1.getText(), this.lisattavaKielella2.getText(), tiedostonNimi);
             }
         
         } else if (e.getActionCommand().equals("Poista")) {
-            if (this.poistettavaKiella1 == null) {
+            if (this.poistettavaKiella1.getText().isEmpty()) {
                JOptionPane.showMessageDialog(this.frame, "Sana ei voi olla tyhjä!", "Virhe", JOptionPane.ERROR_MESSAGE); 
                return;
             }
-            this.ohjelma.poistaSana(this.poistettavaKiella1.getText(), tiedostonNimi);
+            if(!this.ohjelma.poistaSana(this.poistettavaKiella1.getText(), tiedostonNimi)) {
+                JOptionPane.showMessageDialog(this.frame, "Sana poisto epäonnistui!", "Virhe", JOptionPane.ERROR_MESSAGE); 
+            } else {
+                System.out.println("Sanan poisto onnistui!");
+            }
         }
     }
     

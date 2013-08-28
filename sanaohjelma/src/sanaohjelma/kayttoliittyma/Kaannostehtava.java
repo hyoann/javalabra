@@ -7,7 +7,8 @@ import javax.swing.JTextField;
 import sanaohjelma.Sanaohjelma;
 import sanaohjelma.kayttoliittyma.Tapahtumankuuntelijat.VastauksenTarkistaja;
 
-public class Kaannostehtava extends JPanel{
+public class Kaannostehtava extends JPanel {
+
     private JFrame frame;
     private Sanaohjelma ohjelma;
     private String kieli;
@@ -39,9 +40,6 @@ public class Kaannostehtava extends JPanel{
         add(teksti);
         add(sana);
         add(vastaus);
-       sana.setText(this.ohjelma.kysySana(this.kieli));
-        
-        this.frame.add(this);
-        this.frame.validate();
+        sana.setText(this.ohjelma.kysySana(this.kieli));
     }
 }

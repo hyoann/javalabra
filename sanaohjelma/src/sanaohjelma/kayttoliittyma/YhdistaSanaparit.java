@@ -9,6 +9,7 @@ import sanaohjelma.Sanaohjelma;
 import sanaohjelma.kayttoliittyma.Tapahtumankuuntelijat.ParienTarkistaja;
 
 public class YhdistaSanaparit extends JPanel {
+
     private JFrame frame;
     private Sanaohjelma ohjelma;
     private int maara;
@@ -19,25 +20,33 @@ public class YhdistaSanaparit extends JPanel {
         this.maara = maara;
         this.luoKomponentit();
     }
-    
+
     private void luoKomponentit() {
         ArrayList<String> sanat = this.ohjelma.haeSanatNumerolla(this.maara);
         ArrayList<String> kaannokset = this.ohjelma.haeKaannoksetKirjaimella();
+
+        JLabel sanatGUI = new JLabel();
+        JLabel kaannoksetGUI = new JLabel();
         
-        JLabel listat = new JLabel();
-        String rivit = "";
-        
+         String sanatTekstina = "";
+         String kaannoksetTekstina = "";
+
         for (int i = 0; i < sanat.size(); i++) {
-            rivit += sanat.get(i) + "" + kaannokset.get(i) + "<br/"; 
+            sanatTekstina += sanat.get(i) + "<br/>";
+            kaannoksetTekstina += kaannokset.get(i) + "<br/>";
         }
-        listat.setText("<html>" + rivit  +"</html>");
-        
+
+        sanatGUI.setText("<html>" + sanatTekstina + "</html>");
+        kaannoksetGUI.setText("<html>" + kaannoksetTekstina + "</html>");
+
         JTextField vastausAlue = new JTextField(3);
-        
+
         ParienTarkistaja tarkistaja = new ParienTarkistaja(this.frame, this.ohjelma, vastausAlue, sanat.size());
         vastausAlue.addActionListener(tarkistaja);
-        
-        add(listat);
+
+        add(sanatGUI);
+        add(kaannoksetGUI);
         add(vastausAlue);
+
     }
 }

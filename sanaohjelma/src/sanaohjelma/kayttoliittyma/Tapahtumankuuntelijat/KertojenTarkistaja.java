@@ -31,42 +31,42 @@ public class KertojenTarkistaja implements ActionListener {
             return;
         }
 
+        //tarkistetaan onko tiedosto valittu
+        if (!this.ohjelma.onkoSanatAsetettu()) {
+            JOptionPane.showMessageDialog(this.frame, "Valitse tiedosto!", "Virhe", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
         String maara = maarat.getSelectedItem().toString();
 
         if (maara == null) {
             JOptionPane.showMessageDialog(this.frame, "Valitse jokin luku!", "Virhe", JOptionPane.ERROR_MESSAGE);
             return;
         }
-
+        //jos ollaan päästy tänne asti, kaikki on ok joten dialogi voidaan hävittää
         this.kysymys.setVisible(false);
 
-        //tarkistetaan onko tiedosto valittu
-        if (this.ohjelma.sanojenMaara() == 0) {
-            JOptionPane.showMessageDialog(this.frame, "Valitse tiedosto!", "Virhe", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-
         int kerrat = Integer.parseInt(maara);
+        if (this.ohjelma.sanojenMaara() < kerrat) {
+            kerrat = this.ohjelma.sanojenMaara();
+            JOptionPane.showMessageDialog(this.frame, "Tiedostossa ei ole niin paljon sanoja. Kysytään " + kerrat + " sanaa", "Ilmoitus", JOptionPane.INFORMATION_MESSAGE);
+        }
         System.out.println("Sanapareja " + kerrat + " kpl");
 
         //tyhjennetään valikon alapuoli, jos siellä on jotain
         Component[] komponentit = this.frame.getContentPane().getComponents();
         System.out.println("Komponenttien määrä (KertojenTarkistaja): " + this.frame.getContentPane().getComponentCount());
-    
+
         if (komponentit.length > 7) {
             for (int i = 7; i < komponentit.length; i++) {
                 this.frame.remove(komponentit[i]);
-                this.frame.validate();
+                this.frame.repaint();
             }
         }
-        this.frame.revalidate();
 
-            YhdistaSanaparit tehtava = new YhdistaSanaparit(this.frame, this.ohjelma, kerrat);
+        YhdistaSanaparit tehtava = new YhdistaSanaparit(this.frame, this.ohjelma, kerrat);
 
-
-
-            this.frame.add(tehtava);
-            this.frame.validate();
-        }
+        this.frame.getContentPane().add(tehtava);
+        this.frame.validate();
     }
+}

@@ -1,14 +1,17 @@
 
 package sanaohjelma.kayttoliittyma.Tapahtumankuuntelijat;
 
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import sanaohjelma.Sanaohjelma;
+import sanaohjelma.kayttoliittyma.YllapitoGraafinen;
 
 public class TiedostonPoisto implements ActionListener {
     
@@ -31,6 +34,7 @@ public class TiedostonPoisto implements ActionListener {
            if(!this.ohjelma.poistaTiedosto(tiedostonNimi)) {
                JOptionPane.showMessageDialog(this.frame, "Tiedoston poisto epäonnistui!", "Virhe!", JOptionPane.ERROR_MESSAGE);
            }
+           JOptionPane.showMessageDialog(this.frame, "Tiedoston poisto onnistui!", "Ilmoitus!", JOptionPane.INFORMATION_MESSAGE);
         }
     }
     

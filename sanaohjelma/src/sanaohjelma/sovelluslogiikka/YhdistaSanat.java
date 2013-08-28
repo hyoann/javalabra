@@ -17,20 +17,14 @@ public class YhdistaSanat {
 
     public void taytaListat(int maara) {
         int sanamaara = 0;
-        
+
         while (sanamaara < maara) {
             String sana = this.sanat.annaJokuSana(Kielet.kieli1);
-
-            if (sana == null) {
-                break;
-            }
 
             if (!this.arvotutSanat.contains(sana)) {
                 this.arvotutSanat.add(sana);
                 this.kaannokset.add(sanamaara);
                 sanamaara++;
-            } else {
-                return;
             }
         }
         Collections.shuffle(this.kaannokset);
@@ -41,7 +35,7 @@ public class YhdistaSanat {
         ArrayList<String> sanatNumeroituna = new ArrayList<String>();
 
         for (int i = 0; i < this.arvotutSanat.size(); i++) {
-            sanatNumeroituna.add(i + "." + this.arvotutSanat.get(i));
+            sanatNumeroituna.add((i + 1) + "." + this.arvotutSanat.get(i));
         }
         return sanatNumeroituna;
     }
@@ -69,7 +63,7 @@ public class YhdistaSanat {
             String luku = vastaus.substring(0, vastaus.length() - 1);
             //muutetaan luvuiksi
             int kaannos = (int) kirjain - 97;
-            int sana = Integer.parseInt(luku);
+            int sana = Integer.parseInt(luku) - 1;
 
             if (sana == this.kaannokset.get(kaannos)) {
                 return true;

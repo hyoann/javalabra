@@ -31,26 +31,26 @@ public class ValitseTiedosto implements ActionListener {
             File tiedosto = tiedostot.getSelectedFile();
              System.out.println(tiedosto.getName());
              
-            JPanel panel = new JPanel();
+            JPanel kyllaVaiEi = new JPanel();
             JLabel valittu = new JLabel(tiedosto.getName());
             JLabel lisataanko = new JLabel("Lisätäänkö tiedosto?");
             JButton kylla = new JButton("Kyllä");
             JButton ei = new JButton("Ei");
            
-            TiedostonLisays lisays = new TiedostonLisays(this.frame, this.ohjelma, tiedosto);
+            TiedostonLisays lisays = new TiedostonLisays(this.frame, this.ohjelma, tiedosto, kyllaVaiEi);
             kylla.addActionListener(lisays);
             ei.addActionListener(lisays);
             
-            panel.add(valittu);
-            panel.add(lisataanko);
-            panel.add(kylla);
-            panel.add(ei);
+            kyllaVaiEi.add(valittu);
+            kyllaVaiEi.add(lisataanko);
+            kyllaVaiEi.add(kylla);
+            kyllaVaiEi.add(ei);
             
-            this.frame.getContentPane().add(panel);
+            this.frame.getContentPane().add(kyllaVaiEi);
             this.frame.validate();
 
         } else {
-             System.out.println("Moikka");
+             System.out.println("Cancel");
         }
     }
     

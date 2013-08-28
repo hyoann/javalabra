@@ -11,9 +11,9 @@ public class Tekstikayttoliittyma {
     private Sanaohjelma ohjelma;
     private Scanner lukija;
 
-    public Tekstikayttoliittyma(Scanner lukija, Sanaohjelma ohjelma) {
+    public Tekstikayttoliittyma(Sanaohjelma ohjelma) {
         this.ohjelma = ohjelma;
-        this.lukija = lukija;
+        this.lukija = new Scanner(System.in, "UTF-8");
     }
 
     public void kirjautuminen() {
@@ -23,14 +23,20 @@ public class Tekstikayttoliittyma {
         while (true) {
             System.out.print("Kirjaudu sisään (1) tai luo tunnus (2): ");
             String valinta = lukija.nextLine();
+            System.out.println("");
+            
             if (valinta.equals("1")) {
-                this.kirjauduSisaan();
-                break;
+                if (this.kirjauduSisaan()) {
+                    //kayttaja pääsi sisään joten voidaan poistua silmukasta
+                    break;
+                }
             } else if (valinta.equals("2")) {
                 this.luoTunnus();
             } else {
                 System.out.println("Valitse 1 tai 2");
             }
+        
+            System.out.println("");
         }
 
     }
@@ -63,7 +69,7 @@ public class Tekstikayttoliittyma {
         }
     }
 
-    public void kirjauduSisaan() {
+    public boolean kirjauduSisaan() {
         System.out.print("Anna käyttäjätunnus: ");
         String tunnus = lukija.nextLine();
         System.out.print("Anna salasana: ");
@@ -71,13 +77,16 @@ public class Tekstikayttoliittyma {
         System.out.println("");
 
         if (this.ohjelma.haeKayttaja(tunnus, salasana) != null) {
-            System.out.println("Hei " + this.ohjelma.kayttajanNimi() + "!");
-            System.out.println("======================");
+            String tervehdys = "Hei " + this.ohjelma.kayttajanNimi() + "!";
+            System.out.println(tervehdys);
+            tulostaMerkkeja('=', tervehdys.length());
             System.out.println("");
             this.kaynnista();
         } else {
             System.out.println("Väärä käyttäjätunnus tai salasana!");
+            return false;
         }
+        return true;
     }
 
     public void kaynnista() {
@@ -203,7 +212,12 @@ public class Tekstikayttoliittyma {
     }
 
     public void naytaSanat() {
-        System.out.println(this.ohjelma.sanatMerkkijono());
+        String sanat = this.ohjelma.sanatMerkkijono();
+        if (sanat == null) {
+            System.out.println("Tiedostossa ei ole sanoja!");
+            return;
+        }
+        System.out.println(sanat);
     }
 
     /**
@@ -251,15 +265,23 @@ public class Tekstikayttoliittyma {
      *
      * @param kaannettavaKieli
      */
-    public void kaannosTehtava(String kaannettavaKieli) {
+    public void kaannosTehtava(String kaannettavaKieli) {   
+        if (!this.ohjelma.onkoSanatAsetettu()) {
+            System.out.println("Tiedostossa ei ole sanoja!");
+            return;
+        }
+        
         int kerrat;
-
         while (true) {
             System.out.print("Monta kertaa kysytään? ");
 
 
             try {
                 kerrat = Integer.parseInt(lukija.nextLine());
+                if (kerrat < 0 ) {
+                    System.out.println("Anna jokin positiivinen luku!");
+                    return;
+                }
                 break;
             } catch (Exception e) {
                 System.out.println("");
@@ -273,6 +295,11 @@ public class Tekstikayttoliittyma {
     }
 
     public void yhdistaSanat() {
+    
+        if (!this.ohjelma.onkoSanatAsetettu()) {
+            System.out.println("Tiedostossa ei ole sanoja!");
+            return;
+        }
         int maara = -99;
 
         while (true) {
@@ -345,5 +372,12 @@ public class Tekstikayttoliittyma {
         System.out.println("Tietosi:");
         System.out.println(this.ohjelma.kayttajanTilasto());
         this.ohjelma.tallennaTilasto();
+    }
+    
+    private static void tulostaMerkkeja(char merkki, int kerrat) {
+        for (int i = 0; i < kerrat; i++) {
+            System.out.print(merkki);
+        }
+        System.out.println("");
     }
 }

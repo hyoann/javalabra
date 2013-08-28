@@ -35,7 +35,7 @@ public class ValikonKuuntelija implements ActionListener {
         if (komponentit.length > 7) {
             for (int i = 7; i < komponentit.length; i++) {
                 this.frame.remove(komponentit[i]);
-                this.frame.validate();
+                this.frame.repaint();         
             }
         }
 

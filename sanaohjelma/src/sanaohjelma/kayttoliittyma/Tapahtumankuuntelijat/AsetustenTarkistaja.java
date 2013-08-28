@@ -56,6 +56,7 @@ public class AsetustenTarkistaja implements ActionListener {
 
         if (this.lista.getSelectedValue() == null) {
             JOptionPane.showMessageDialog(this.frame, "Valitse tiedosto!", "Virhe", JOptionPane.ERROR_MESSAGE);
+            return;
         }
 
         System.out.println("lista: " + lista);
@@ -66,14 +67,13 @@ public class AsetustenTarkistaja implements ActionListener {
     
         if (komponentit.length > 7) {
             for (int i = 7; i < komponentit.length; i++) {
-                this.frame.remove(komponentit[i]);
-                this.frame.validate();
+                this.frame.remove(komponentit[i]);                    
+                    this.frame.repaint();
             }
         }
-        
-        
+ 
         Kaannostehtava tehtava = new Kaannostehtava(this.frame, this.ohjelma, kieli, annetutKerrat);
-
+        
         this.frame.getContentPane().add(tehtava);
         this.frame.validate();
     }

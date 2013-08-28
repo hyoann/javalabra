@@ -20,19 +20,25 @@ public class Sanaohjelma {
     private Kayttajat kayttajat;
     private MokausMuistio muistio;
     private YhdistaSanat yhdista;
+    private int toistotiheys;
 
-    public Sanaohjelma(Tiedostonlukija tiedostonlukija) {
+    public Sanaohjelma() {
         this.sanat = null;
-        this.tiedostonlukija = tiedostonlukija;
+        this.tiedostonlukija = new Tiedostonlukija();
         this.kayttaja = null;
         this.kayttajat = tiedostonlukija.tuoKayttajat(new File("src/sanaohjelma/kayttajat.txt"));
         this.muistio = new MokausMuistio();
         this.yhdista = null;
+        this.toistotiheys = 0;
     }
 
     public boolean lisaaKayttaja(String tunnus, String salasana, String nimi) {
         Kayttaja kayttaja = new Kayttaja(tunnus, salasana, nimi);
         
+        if (this.kayttajat == null) {
+            this.kayttajat = new Kayttajat();
+        }
+
         if (this.kayttajat.lisaaKayttaja(tunnus, kayttaja)) {
             TiedostoonKirjoittaja kirjoittaja = new TiedostoonKirjoittaja();
             kirjoittaja.paivitaKayttajatTiedostoon(this.kayttajat);
@@ -43,7 +49,11 @@ public class Sanaohjelma {
     }
 
     public Kayttaja haeKayttaja(String tunnus, String salasana) {
-        Kayttaja kayttaja = kayttajat.haeKayttaja(tunnus, salasana);
+        if (this.kayttajat == null) {
+            return null;
+        }
+
+        Kayttaja kayttaja = this.kayttajat.haeKayttaja(tunnus, salasana);
 
         if (kayttaja != null) {
             this.kayttaja = kayttaja;
@@ -64,7 +74,7 @@ public class Sanaohjelma {
         TiedostoonKirjoittaja kirjoittaja = new TiedostoonKirjoittaja();
         kirjoittaja.paivitaKayttajatTiedostoon(this.kayttajat);
     }
-    
+
     public void kasvataOikeinVastattuja(int maara) {
         this.kayttaja.getTilasto().kasvataOikeita();
     }
@@ -82,8 +92,15 @@ public class Sanaohjelma {
         return false;
     }
 
+    public void asetaToistojenTiheys(int toistotiheys) {
+        this.toistotiheys = toistotiheys;
+    }
+
     public String kysySana(String kieli) {
-        Sanavalitsin valitsin = new Sanavalitsin(2, this.kayttaja.getTilasto(), this.sanat, this.muistio);
+        if (this.sanat == null) {
+            return null;
+        }
+        Sanavalitsin valitsin = new Sanavalitsin(this.toistotiheys, this.kayttaja.getTilasto(), this.sanat, this.muistio);
         String kysyttavaSana = valitsin.annaSana(kieli);
         if (kysyttavaSana != null) {
             this.kayttaja.getTilasto().kasvataSanamaaraa();
@@ -92,10 +109,16 @@ public class Sanaohjelma {
     }
 
     public String sanatMerkkijono() {
+        if (this.sanat == null) {
+            return null;
+        }
         return this.sanat.toString();
     }
 
     public int sanojenMaara() {
+        if (this.sanat == null) {
+            return 0;
+        }
         return this.sanat.sanojenMaara();
     }
 
@@ -118,7 +141,7 @@ public class Sanaohjelma {
         if (!sanatTemp.poista(sana)) {
             return false;
         }
-        kirjoittaja.paivitaSanatTiedostossa(sanatTemp);
+        kirjoittaja.paivitaSanatTiedostossa(sanatTemp, tiedostonNimi);
         return true;
     }
 
@@ -153,33 +176,51 @@ public class Sanaohjelma {
 
         return alkuperainen.renameTo(new File("src/sanaohjelma/Sanatiedostot/" + nimi));
     }
-    
+
     public ArrayList<String> haeSanatNumerolla(int maara) {
-        //aloitetaan tehtävä joten luodaan tehtävä-olio
+        //aloitetaan yhdistaSanat-tehtävä joten luodaan vastaava olio
+        if (this.sanat == null) {
+            return null;
+        }
         this.yhdista = new YhdistaSanat(this.sanat);
         this.yhdista.taytaListat(maara);
-        System.out.println(this.yhdista.palautaSanatNumerolla());
+
         return this.yhdista.palautaSanatNumerolla();
     }
-    
+
     public ArrayList<String> haeKaannoksetKirjaimella() {
-        System.out.println(this.yhdista.palautaKaannoksetKirjaimella());
-       return this.yhdista.palautaKaannoksetKirjaimella();
+        return this.yhdista.palautaKaannoksetKirjaimella();
     }
-    
+
     public boolean tarkistaVastaus(String vastaus) {
-        return this.yhdista.tarkista(vastaus);
+        //vastauksia on yhtä paljon kuin kysymyksiä, joten kasvatetaan tässä kysyttejn sanojen määrää
+        this.kayttaja.getTilasto().kasvataSanamaaraa();
+
+        boolean vastasikoOikein = this.yhdista.tarkista(vastaus);
+
+        if (vastasikoOikein) {
+            this.kayttaja.getTilasto().kasvataOikeita();
+        }
+        return vastasikoOikein;
     }
-    
+
     public String oikeaRivi() {
         String oikeaRivi = this.yhdista.oikeatVastaukset();
-        //haettiin oikea rivi, joten tehtävä lopetetetaan ja olio voidaan nollata
+        //haettiin oikea rivi, joten tehtävä loppui ja olio voidaan nollata
         this.yhdista = null;
-        
+
         return oikeaRivi;
     }
-    
+
     public void kirjaaKayttajaUlos() {
         this.kayttaja = null;
+    }
+
+    //Metodi on graafista käyttöliittymää varten
+    public boolean onkoSanatAsetettu() {
+        if (this.sanat == null) {
+            return false;
+        }
+        return true;
     }
 }

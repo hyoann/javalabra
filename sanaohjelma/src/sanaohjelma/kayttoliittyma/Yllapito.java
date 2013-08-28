@@ -3,14 +3,14 @@ package sanaohjelma.kayttoliittyma;
 import java.util.Scanner;
 import sanaohjelma.Sanaohjelma;
 import sanaohjelma.sovelluslogiikka.Kielet;
-import sanaohjelma.sovelluslogiikka.Tiedostonlukija;
 
 public class Yllapito {
+
     private Scanner lukija;
     private Sanaohjelma ohjelma;
 
-    public Yllapito(Scanner lukija, Tiedostonlukija tiedostonlukija, Sanaohjelma ohjelma) {
-        this.lukija = lukija;
+    public Yllapito(Sanaohjelma ohjelma) {
+        this.lukija = new Scanner(System.in, "UTF-8");
         this.ohjelma = ohjelma;
     }
 
@@ -96,7 +96,7 @@ public class Yllapito {
         System.out.println("Valitse muokattava tiedosto:");
         this.tiedostotLuettelona();
         System.out.println("");
-        
+
         int valinta = -99;
 
         while (true) {
@@ -110,7 +110,7 @@ public class Yllapito {
             }
         }
         System.out.println("");
-        
+
         String tiedostonNimi = this.ohjelma.haeTiedostonNimi(valinta);
 
         return tiedostonNimi;
@@ -167,10 +167,10 @@ public class Yllapito {
                 System.out.println("Tiedoston poisto epäonnistui.");
                 return false;
             }
-        } else{
+        } else {
             System.out.println("Tiedostoa " + tiedostonNimi + " ei poistettu!");
             return false;
-        } 
+        }
     }
 
     private void lisaaTiedosto() {

@@ -15,6 +15,7 @@ public class ParienTarkistaja implements ActionListener {
     private int oikein;
     private int vastaus;
     private int sanapareja;
+    private JLabel vastauksesi;
 
     public ParienTarkistaja(JFrame frame, Sanaohjelma ohjelma, JTextField vastausAlue, int sanapareja) {
         this.frame = frame;
@@ -23,33 +24,38 @@ public class ParienTarkistaja implements ActionListener {
         this.oikein = 0;
         this.vastaus = 0;
         this.sanapareja = sanapareja;
+
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         this.vastaus++;
         
+        if (this.vastaus == 1) {
+            this.frame.add(new JLabel("Vastauksesi: "));
+        }
+
+        JLabel vastattu = new JLabel();
+        vastattu.setText(this.vastausAlue.getText());
+
         if (this.vastaus > this.sanapareja) {
             return;
         }
- 
+
         if (this.ohjelma.tarkistaVastaus(this.vastausAlue.getText())) {
             this.oikein++;
         }
-        
-        JLabel vastattu = new JLabel();
-        vastattu.setText(this.vastausAlue.getText());
-        
-        this.vastausAlue.setText("");
-        
-        if (this.vastaus == this.sanapareja) {
-            JLabel tulos = new JLabel("Sait oikein " + this.oikein + "/" + this.sanapareja);
-            JLabel oikeaRivi = new JLabel("Oikea rivi: " + this.ohjelma.oikeaRivi());
-            this.frame.add(tulos);
-            this.frame.add(oikeaRivi);
-        }
-        
+
         this.frame.add(vastattu);
+
+
+        if (this.vastaus == this.sanapareja) {
+            JLabel tulos = new JLabel("<html>Sait oikein " + this.oikein + "/" + this.sanapareja + "<br/>" + 
+                    "Oikea rivi: " + this.ohjelma.oikeaRivi() + "</html>");
+            this.frame.add(tulos);
+        }
+
+        this.vastausAlue.setText("");
         this.frame.validate();
     }
 }

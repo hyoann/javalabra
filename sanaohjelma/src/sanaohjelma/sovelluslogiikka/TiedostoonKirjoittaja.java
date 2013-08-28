@@ -60,8 +60,8 @@ public class TiedostoonKirjoittaja {
      *
      * @param sanat Sanat-luokan ilmentymä, joka halutaan tallentaa.
      */
-    public void paivitaSanatTiedostossa(Sanat sanat) {
-        this.kirjoitaTiedostoon("src/sanaohjelma/Sanatiedostot/sanat.txt", sanat.toString());    
+    public void paivitaSanatTiedostossa(Sanat sanat, String tiedostonNimi) {
+        this.kirjoitaTiedostoon("src/sanaohjelma/Sanatiedostot/" + tiedostonNimi, sanat.toString());    
     }
     
     /**
