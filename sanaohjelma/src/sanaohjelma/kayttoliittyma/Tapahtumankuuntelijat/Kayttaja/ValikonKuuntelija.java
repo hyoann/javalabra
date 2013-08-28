@@ -1,4 +1,4 @@
-package sanaohjelma.kayttoliittyma.Tapahtumankuuntelijat;
+package sanaohjelma.kayttoliittyma.Tapahtumankuuntelijat.Kayttaja;
 
 import java.awt.Component;
 import java.awt.event.ActionEvent;
@@ -8,10 +8,10 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import sanaohjelma.Sanaohjelma;
-import sanaohjelma.kayttoliittyma.KayttajanTiedot;
-import sanaohjelma.kayttoliittyma.KysyKerrat;
-import sanaohjelma.kayttoliittyma.Lopetus;
-import sanaohjelma.kayttoliittyma.TehtavanAsetukset;
+import sanaohjelma.kayttoliittyma.Kayttaja.KayttajanTiedot;
+import sanaohjelma.kayttoliittyma.Kayttaja.KysyKerrat;
+import sanaohjelma.kayttoliittyma.Kayttaja.Lopetus;
+import sanaohjelma.kayttoliittyma.Kayttaja.TehtavanAsetukset;
 
 public class ValikonKuuntelija implements ActionListener {
 

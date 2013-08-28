@@ -9,13 +9,13 @@ public class SanavalitsinTest {
     Sanavalitsin valitsin;
     Tilasto tilasto;
     Sanat sanat;
-    Mokailut mokailut;
+    MokausMuistio mokailut;
 
     @Before
     public void setUp() {
         tilasto = new Tilasto(0, 0);
         sanat = new Sanat();
-        mokailut = new Mokailut();
+        mokailut = new MokausMuistio();
         valitsin = new Sanavalitsin(3, tilasto, sanat, mokailut);
         Kielet.asetaKielet("suomi", "englanti");
     }
@@ -31,7 +31,7 @@ public class SanavalitsinTest {
         sanat.lisaa("am", "ma");
         tilasto.kasvataSanamaaraa();
         //vastataan väärin
-        mokailut.lisaaSana(Kielet.kieli1, "am");
+        mokailut.lisaaSana(Kielet.getKieli1(), "am");
         
         sanat.lisaa("ad", "fa");
         tilasto.kasvataSanamaaraa();
@@ -39,7 +39,7 @@ public class SanavalitsinTest {
         sanat.lisaa("as", "fs");
         tilasto.kasvataSanamaaraa();
         
-        assertEquals(valitsin.annaSana(Kielet.kieli1), "am");
+        assertEquals(valitsin.annaSana(Kielet.getKieli1()), "am");
         
         
     }

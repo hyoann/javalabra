@@ -1,5 +1,5 @@
 
-package sanaohjelma.kayttoliittyma;
+package sanaohjelma.kayttoliittyma.Kayttaja;
 
 import javax.swing.JFrame;
 import sanaohjelma.Sanaohjelma;

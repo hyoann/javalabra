@@ -1,4 +1,4 @@
-package sanaohjelma.kayttoliittyma;
+package sanaohjelma.kayttoliittyma.Kayttaja;
 
 import java.util.ArrayList;
 import javax.swing.JFrame;
@@ -6,7 +6,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import sanaohjelma.Sanaohjelma;
-import sanaohjelma.kayttoliittyma.Tapahtumankuuntelijat.ParienTarkistaja;
+import sanaohjelma.kayttoliittyma.Tapahtumankuuntelijat.Kayttaja.ParienTarkistaja;
 
 public class YhdistaSanaparit extends JPanel {
 

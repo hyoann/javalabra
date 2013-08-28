@@ -14,7 +14,7 @@ public class MokausMuistio {
     }
 
     public void lisaaSana(String sana, String kieli) {
-        if (kieli.equals(Kielet.kieli1)) {
+        if (kieli.equals(Kielet.getKieli1())) {
             this.kieli1.add(sana);
         } else {
             this.kieli2.add(sana);
@@ -22,7 +22,7 @@ public class MokausMuistio {
     }
 
     public void poistaSana(String sana, String kieli) {
-        if (kieli.equals(Kielet.kieli1)) {
+        if (kieli.equals(Kielet.getKieli1())) {
             this.kieli1.remove(sana);
         } else {
             this.kieli2.remove(sana);
@@ -32,7 +32,7 @@ public class MokausMuistio {
     public String annaJokuSana(String kieli) {
         ArrayList<String> lista = this.kieli1;
         
-        if (kieli.equals(Kielet.kieli2)) {
+        if (kieli.equals(Kielet.getKieli2())) {
             lista = this.kieli2;
         }
         

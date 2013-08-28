@@ -185,8 +185,8 @@ public class Tekstikayttoliittyma {
         while (true) {
             System.out.println("Valitse seuraavista:");
             System.out.println("    1 - Näytä sanat");
-            System.out.println("    2 - Käännä sanoja kielestä " + Kielet.kieli1 + " kieleen " + Kielet.kieli2);
-            System.out.println("    3 - Käännä  sanoja kielestä " + Kielet.kieli2 + " kieleen " + Kielet.kieli1);
+            System.out.println("    2 - Käännä sanoja kielestä " + Kielet.getKieli1() + " kieleen " + Kielet.getKieli2());
+            System.out.println("    3 - Käännä  sanoja kielestä " + Kielet.getKieli2() + " kieleen " + Kielet.getKieli1());
             System.out.println("    4 - Yhdistä oikeat sanaparit keskenään");
             System.out.println("    0 - Poistu");
             System.out.println("");
@@ -197,9 +197,9 @@ public class Tekstikayttoliittyma {
             if (valinta.equals("1")) {
                 this.naytaSanat();
             } else if (valinta.equals("2")) {
-                this.kaannosTehtava(Kielet.kieli1);
+                this.kaannosTehtava(Kielet.getKieli1());
             } else if (valinta.equals("3")) {
-                this.kaannosTehtava(Kielet.kieli2);
+                this.kaannosTehtava(Kielet.getKieli2());
             } else if (valinta.equals("4")) {
                 this.yhdistaSanat();
             } else if (valinta.equals("0")) {

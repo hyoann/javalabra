@@ -81,6 +81,12 @@ public class Tiedostonlukija {
         return sanat;
     }
 
+    public Sanat tuoSanat(File tiedosto) {
+        ArrayList<String> rivit = this.lueTiedosto(tiedosto);
+        Sanat sanat = tallennaSanaparit(rivit);
+        return sanat;
+    }
+
     public Kayttajat tuoKayttajat(File tiedosto) {
         ArrayList<String> rivit = this.lueTiedosto(tiedosto);
         Kayttajat kayttajat = haeKayttajat(rivit);

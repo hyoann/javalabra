@@ -1,11 +1,11 @@
-package sanaohjelma.kayttoliittyma;
+package sanaohjelma.kayttoliittyma.Kayttaja;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import sanaohjelma.Sanaohjelma;
-import sanaohjelma.kayttoliittyma.Tapahtumankuuntelijat.VastauksenTarkistaja;
+import sanaohjelma.kayttoliittyma.Tapahtumankuuntelijat.Kayttaja.VastauksenTarkistaja;
 
 public class Kaannostehtava extends JPanel {
 

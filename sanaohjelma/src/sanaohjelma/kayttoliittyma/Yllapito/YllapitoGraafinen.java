@@ -1,6 +1,6 @@
-package sanaohjelma.kayttoliittyma;
+package sanaohjelma.kayttoliittyma.Yllapito;
 
-import sanaohjelma.kayttoliittyma.Tapahtumankuuntelijat.ValitseTiedosto;
+import sanaohjelma.kayttoliittyma.Tapahtumankuuntelijat.Yllapito.ValitseTiedosto;
 import java.awt.Dimension;
 import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
@@ -12,8 +12,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 import sanaohjelma.Sanaohjelma;
-import sanaohjelma.kayttoliittyma.Tapahtumankuuntelijat.TiedostojenKuuntelija;
-import sanaohjelma.kayttoliittyma.Tapahtumankuuntelijat.TiedostonPoisto;
+import sanaohjelma.kayttoliittyma.Tapahtumankuuntelijat.Yllapito.TiedostojenKuuntelija;
+import sanaohjelma.kayttoliittyma.Tapahtumankuuntelijat.Yllapito.TiedostonPoisto;
 
 public class YllapitoGraafinen extends JPanel {
 

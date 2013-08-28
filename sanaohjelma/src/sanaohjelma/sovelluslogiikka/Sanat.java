@@ -86,7 +86,7 @@ public class Sanat {
         
         Set avaimet = null;
         
-        if (kieli.equals(Kielet.kieli1)) {
+        if (kieli.equals(Kielet.getKieli1())) {
             avaimet = this.ekaToka.keySet();
         } else {
             avaimet = this.tokaEka.keySet();

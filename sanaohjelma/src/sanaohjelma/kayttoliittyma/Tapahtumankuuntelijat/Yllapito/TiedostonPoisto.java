@@ -1,5 +1,5 @@
 
-package sanaohjelma.kayttoliittyma.Tapahtumankuuntelijat;
+package sanaohjelma.kayttoliittyma.Tapahtumankuuntelijat.Yllapito;
 
 import java.awt.Component;
 import java.awt.event.ActionEvent;
@@ -11,7 +11,7 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import sanaohjelma.Sanaohjelma;
-import sanaohjelma.kayttoliittyma.YllapitoGraafinen;
+import sanaohjelma.kayttoliittyma.Yllapito.YllapitoGraafinen;
 
 public class TiedostonPoisto implements ActionListener {
     

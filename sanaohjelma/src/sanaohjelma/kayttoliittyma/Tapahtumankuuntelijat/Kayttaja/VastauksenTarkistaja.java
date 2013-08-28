@@ -1,4 +1,4 @@
-package sanaohjelma.kayttoliittyma.Tapahtumankuuntelijat;
+package sanaohjelma.kayttoliittyma.Tapahtumankuuntelijat.Kayttaja;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

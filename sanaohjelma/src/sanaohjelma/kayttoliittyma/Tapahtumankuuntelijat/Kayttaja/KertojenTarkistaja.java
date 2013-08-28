@@ -1,4 +1,4 @@
-package sanaohjelma.kayttoliittyma.Tapahtumankuuntelijat;
+package sanaohjelma.kayttoliittyma.Tapahtumankuuntelijat.Kayttaja;
 
 import java.awt.Component;
 import java.awt.event.ActionEvent;
@@ -8,7 +8,7 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import sanaohjelma.Sanaohjelma;
-import sanaohjelma.kayttoliittyma.YhdistaSanaparit;
+import sanaohjelma.kayttoliittyma.Kayttaja.YhdistaSanaparit;
 
 public class KertojenTarkistaja implements ActionListener {
 

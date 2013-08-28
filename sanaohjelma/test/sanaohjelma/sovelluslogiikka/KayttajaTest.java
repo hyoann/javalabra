@@ -14,7 +14,7 @@ public class KayttajaTest {
     
     @Before
     public void setUp() {
-        tilasto = new Tilasto(0, 0);
+        tilasto = new Tilasto();
         kayttaja = new Kayttaja("tunnus", "nimi", "salasana", tilasto);
     }
 

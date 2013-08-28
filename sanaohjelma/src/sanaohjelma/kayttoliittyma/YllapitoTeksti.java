@@ -4,12 +4,12 @@ import java.util.Scanner;
 import sanaohjelma.Sanaohjelma;
 import sanaohjelma.sovelluslogiikka.Kielet;
 
-public class Yllapito {
+public class YllapitoTeksti {
 
     private Scanner lukija;
     private Sanaohjelma ohjelma;
 
-    public Yllapito(Sanaohjelma ohjelma) {
+    public YllapitoTeksti(Sanaohjelma ohjelma) {
         this.lukija = new Scanner(System.in, "UTF-8");
         this.ohjelma = ohjelma;
     }
@@ -125,7 +125,7 @@ public class Yllapito {
     }
 
     public void poistaSana(String tiedostonNimi) {
-        System.out.print("Anna poistettava sana kielellä " + Kielet.kieli1 + ": ");
+        System.out.print("Anna poistettava sana kielellä " + Kielet.getKieli1() + ": ");
         String sana = lukija.nextLine();
 
         if (this.ohjelma.poistaSana(sana, tiedostonNimi)) {
@@ -137,10 +137,10 @@ public class Yllapito {
     }
 
     public void lisaaSana(String tiedostonNimi) {
-        System.out.print("Anna sana kielellä " + Kielet.kieli1 + ": ");
+        System.out.print("Anna sana kielellä " + Kielet.getKieli1() + ": ");
         String sana1 = lukija.nextLine();
 
-        System.out.print("Anna sana kielellä " + Kielet.kieli2 + ": ");
+        System.out.print("Anna sana kielellä " + Kielet.getKieli2() + ": ");
         String sana2 = lukija.nextLine();
 
         System.out.println("");

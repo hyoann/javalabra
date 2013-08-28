@@ -1,5 +1,6 @@
-package sanaohjelma.kayttoliittyma.Tapahtumankuuntelijat;
+package sanaohjelma.kayttoliittyma.Tapahtumankuuntelijat.Yllapito;
 
+import sanaohjelma.kayttoliittyma.Tapahtumankuuntelijat.Yllapito.TiedostonMuokkaaja;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -60,13 +61,13 @@ public class TiedostojenKuuntelija implements ListSelectionListener {
             tehtavat.setLayout(new BoxLayout(tehtavat, BoxLayout.Y_AXIS));
             
             JLabel lisaa = new JLabel("Lisää sana");
-            JLabel sana1 = new JLabel("Anna sana kielellä " + Kielet.kieli1);
+            JLabel sana1 = new JLabel("Anna sana kielellä " + Kielet.getKieli1());
             JTextField sanaKielella1 = new JTextField(10);
-            JLabel sana2 = new JLabel("Anna sana kielellä " + Kielet.kieli2);
+            JLabel sana2 = new JLabel("Anna sana kielellä " + Kielet.getKieli2());
             JTextField sanaKielella2 = new JTextField(10);
             JButton lisaaSana = new JButton("Lisää");
             
-            JLabel poista = new JLabel("Anna poistettava sana kielellä " + Kielet.kieli1);
+            JLabel poista = new JLabel("Anna poistettava sana kielellä " + Kielet.getKieli1());
             JTextField poistettavaSana = new JTextField(10);
             JButton poistaSana = new JButton("Poista");
 

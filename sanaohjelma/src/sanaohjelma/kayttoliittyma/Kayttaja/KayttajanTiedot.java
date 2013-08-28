@@ -1,5 +1,5 @@
 
-package sanaohjelma.kayttoliittyma;
+package sanaohjelma.kayttoliittyma.Kayttaja;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;

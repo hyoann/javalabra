@@ -1,6 +1,7 @@
 
-package sanaohjelma.kayttoliittyma.Tapahtumankuuntelijat;
+package sanaohjelma.kayttoliittyma.Tapahtumankuuntelijat.Yllapito;
 
+import sanaohjelma.kayttoliittyma.Tapahtumankuuntelijat.Yllapito.TiedostonLisays;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;

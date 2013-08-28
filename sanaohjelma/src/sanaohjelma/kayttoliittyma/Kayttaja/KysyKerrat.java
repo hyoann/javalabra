@@ -1,4 +1,4 @@
-package sanaohjelma.kayttoliittyma;
+package sanaohjelma.kayttoliittyma.Kayttaja;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import sanaohjelma.Sanaohjelma;
-import sanaohjelma.kayttoliittyma.Tapahtumankuuntelijat.KertojenTarkistaja;
+import sanaohjelma.kayttoliittyma.Tapahtumankuuntelijat.Kayttaja.KertojenTarkistaja;
 
 public class KysyKerrat extends JDialog {
     private JFrame frame;

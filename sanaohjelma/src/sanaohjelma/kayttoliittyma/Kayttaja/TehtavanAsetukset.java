@@ -1,5 +1,5 @@
 
-package sanaohjelma.kayttoliittyma;
+package sanaohjelma.kayttoliittyma.Kayttaja;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import sanaohjelma.Sanaohjelma;
-import sanaohjelma.kayttoliittyma.Tapahtumankuuntelijat.AsetustenTarkistaja;
+import sanaohjelma.kayttoliittyma.Tapahtumankuuntelijat.Kayttaja.AsetustenTarkistaja;
 import sanaohjelma.sovelluslogiikka.Kielet;
 
 public class TehtavanAsetukset extends JDialog{
@@ -32,8 +32,8 @@ public class TehtavanAsetukset extends JDialog{
         JPanel paneeli = new JPanel();
 
         JLabel valitseKieli = new JLabel("Kummasta kielestä käännetään?");
-        JRadioButton kieli1 = new JRadioButton(Kielet.kieli1);
-        JRadioButton kieli2 = new JRadioButton(Kielet.kieli2);
+        JRadioButton kieli1 = new JRadioButton(Kielet.getKieli1());
+        JRadioButton kieli2 = new JRadioButton(Kielet.getKieli2());
 
         ButtonGroup bg = new ButtonGroup();
         bg.add(kieli1);

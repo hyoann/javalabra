@@ -1,5 +1,6 @@
 package sanaohjelma.kayttoliittyma;
 
+import sanaohjelma.kayttoliittyma.Kayttaja.Kirjautuminen;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;

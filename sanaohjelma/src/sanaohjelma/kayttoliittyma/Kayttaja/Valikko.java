@@ -1,5 +1,5 @@
 
-package sanaohjelma.kayttoliittyma;
+package sanaohjelma.kayttoliittyma.Kayttaja;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -8,8 +8,8 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.ListSelectionModel;
 import sanaohjelma.Sanaohjelma;
-import sanaohjelma.kayttoliittyma.Tapahtumankuuntelijat.ListanKuuntelija;
-import sanaohjelma.kayttoliittyma.Tapahtumankuuntelijat.ValikonKuuntelija;
+import sanaohjelma.kayttoliittyma.Tapahtumankuuntelijat.Kayttaja.ListanKuuntelija;
+import sanaohjelma.kayttoliittyma.Tapahtumankuuntelijat.Kayttaja.ValikonKuuntelija;
 
 public class Valikko extends JPanel{
     private JFrame frame;

@@ -1,5 +1,5 @@
 
-package sanaohjelma.kayttoliittyma.Tapahtumankuuntelijat;
+package sanaohjelma.kayttoliittyma.Tapahtumankuuntelijat.Yllapito;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

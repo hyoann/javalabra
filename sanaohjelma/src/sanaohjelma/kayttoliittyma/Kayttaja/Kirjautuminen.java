@@ -1,4 +1,4 @@
-package sanaohjelma.kayttoliittyma;
+package sanaohjelma.kayttoliittyma.Kayttaja;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import sanaohjelma.Sanaohjelma;
-import sanaohjelma.kayttoliittyma.Tapahtumankuuntelijat.KirjautumisenTunnistaja;
+import sanaohjelma.kayttoliittyma.Tapahtumankuuntelijat.Kayttaja.KirjautumisenTunnistaja;
 
 public class Kirjautuminen extends JPanel {
     private JFrame frame;

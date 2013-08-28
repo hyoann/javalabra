@@ -5,6 +5,9 @@ package sanaohjelma.sovelluslogiikka;
  *Sisältää käyttäjän tiedot.
  */
 public class Kayttaja {
+    /**
+     * 
+     */
     private String tunnus;
     private String nimi;
     private String salasana; 

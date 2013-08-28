@@ -1,4 +1,4 @@
-package sanaohjelma.kayttoliittyma.Tapahtumankuuntelijat;
+package sanaohjelma.kayttoliittyma.Tapahtumankuuntelijat.Kayttaja;
 
 import java.awt.BorderLayout;
 import java.awt.Component;

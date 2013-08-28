@@ -1,4 +1,4 @@
-package sanaohjelma.kayttoliittyma.Tapahtumankuuntelijat;
+package sanaohjelma.kayttoliittyma.Tapahtumankuuntelijat.Kayttaja;
 
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -9,7 +9,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 import sanaohjelma.Sanaohjelma;
-import sanaohjelma.kayttoliittyma.Valikko;
+import sanaohjelma.kayttoliittyma.Kayttaja.Valikko;
 
 public class KirjautumisenTunnistaja implements ActionListener {
     private JFrame frame;

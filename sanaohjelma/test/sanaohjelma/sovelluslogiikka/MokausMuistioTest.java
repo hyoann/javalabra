@@ -15,31 +15,31 @@ public class MokausMuistioTest {
     
     @Test
     public void kunMuistiossaYksiSanaSeAnnetaan() {
-        muistio.lisaaSana("kissa");
-        assertEquals(muistio.annaJokuSana(), "kissa");
+        muistio.lisaaSana("kissa", Kielet.getKieli1());
+        assertEquals(muistio.annaJokuSana(Kielet.getKieli1()), "kissa");
     }
     
      @Test
      public void poistaSanaPoistaaSananKunYksiSana() {
-         muistio.lisaaSana("kissa");
-         muistio.poistaSana("kissa");
-         assertNull(muistio.annaJokuSana());
+         muistio.lisaaSana("kissa", Kielet.getKieli1());
+         muistio.poistaSana("kissa", Kielet.getKieli1());
+         assertNull(muistio.annaJokuSana(Kielet.getKieli1()));
      }
      
      @Test
      public void poistaSanaEiTeeMitaanKunPoistettavaaSanaaEiOle() {
-         muistio.lisaaSana("kissa");
-         muistio.poistaSana("elain");
+         muistio.lisaaSana("kissa", Kielet.getKieli1());
+         muistio.poistaSana("elain", Kielet.getKieli1());
          
-         assertEquals(muistio.annaJokuSana(), "kissa");
+         assertEquals(muistio.annaJokuSana(Kielet.getKieli1()), "kissa");
      }
      
      @Test
      public void poistaSanaPoistaaSananKunMontaSanaa() {
-         muistio.lisaaSana("kissa");
-         muistio.lisaaSana("koira");        
-         muistio.poistaSana("kissa");
+         muistio.lisaaSana("kissa", Kielet.getKieli1());
+         muistio.lisaaSana("koira", Kielet.getKieli1());        
+         muistio.poistaSana("kissa", Kielet.getKieli1());
          
-         assertEquals(muistio.annaJokuSana(), "koira");
+         assertEquals(muistio.annaJokuSana(Kielet.getKieli1()), "koira");
      }
 }

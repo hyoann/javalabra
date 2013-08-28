@@ -1,4 +1,4 @@
-package sanaohjelma.kayttoliittyma.Tapahtumankuuntelijat;
+package sanaohjelma.kayttoliittyma.Tapahtumankuuntelijat.Kayttaja;
 
 import java.awt.Component;
 import java.awt.event.ActionEvent;
@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import sanaohjelma.Sanaohjelma;
-import sanaohjelma.kayttoliittyma.Kaannostehtava;
+import sanaohjelma.kayttoliittyma.Kayttaja.Kaannostehtava;
 
 public class AsetustenTarkistaja implements ActionListener {
 

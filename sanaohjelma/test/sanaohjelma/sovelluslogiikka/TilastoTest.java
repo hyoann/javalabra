@@ -26,7 +26,7 @@ public class TilastoTest {
      public void voittoprosenttiLasketaanOikein() {
          this.tilasto.kasvataSanamaaraa();
          this.tilasto.kasvataSanamaaraa();
-         this.tilasto.kasvataMokattuja();
+         this.tilasto.kasvataOikeita();
          
          assertTrue(this.tilasto.voittoprosentti() == 50.0);
          

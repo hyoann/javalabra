@@ -19,7 +19,7 @@ public class YhdistaSanat {
         int sanamaara = 0;
 
         while (sanamaara < maara) {
-            String sana = this.sanat.annaJokuSana(Kielet.kieli1);
+            String sana = this.sanat.annaJokuSana(Kielet.getKieli1());
 
             if (!this.arvotutSanat.contains(sana)) {
                 this.arvotutSanat.add(sana);

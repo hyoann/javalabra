@@ -28,7 +28,7 @@ public class Tarkistaja {
     public String haeOikeaVastaus(String kysyttySana) {
         String oikeaVastaus;
         
-        if (this.kieli.equals(Kielet.kieli1)) {
+        if (this.kieli.equals(Kielet.getKieli1())) {
             oikeaVastaus = this.sanat.kaannaKielelle2(kysyttySana);
         } else {
             oikeaVastaus = this.sanat.kaannaKielelle1(kysyttySana);
