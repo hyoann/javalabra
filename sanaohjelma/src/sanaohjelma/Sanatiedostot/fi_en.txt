@@ -1,0 +1,10 @@
+kissa - cat
+koira - dog
+kukka - flower
+eläin - animal
+aurinko - sun
+elämä - life
+koulu - school
+kynä - pen
+ihminen - human
+tähti - star

@@ -7,6 +7,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
@@ -55,10 +56,15 @@ public class ListanKuuntelija implements ListSelectionListener {
             if (komponentit.length > 7) {
                 for (int i = 7; i < komponentit.length; i++) {
                     this.frame.remove(komponentit[i]);
-                    
+
                     this.frame.repaint();
 
                 }
+            }
+
+            if (this.ohjelma.sanojenMaara() == 0) {
+                JOptionPane.showMessageDialog(this.frame, "Tiedosto on tyhjä!", "Virhe", JOptionPane.ERROR_MESSAGE);
+                return;
             }
 
 

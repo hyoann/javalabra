@@ -71,6 +71,11 @@ public class AsetustenTarkistaja implements ActionListener {
                     this.frame.repaint();
             }
         }
+        
+        if (this.ohjelma.sanojenMaara() == 0) {
+            JOptionPane.showMessageDialog(this.frame, "Tiedosto on tyhjä!", "Virhe", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
  
         Kaannostehtava tehtava = new Kaannostehtava(this.frame, this.ohjelma, kieli, annetutKerrat);
         

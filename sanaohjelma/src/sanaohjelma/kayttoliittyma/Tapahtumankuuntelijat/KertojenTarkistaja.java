@@ -46,6 +46,11 @@ public class KertojenTarkistaja implements ActionListener {
         //jos ollaan päästy tänne asti, kaikki on ok joten dialogi voidaan hävittää
         this.kysymys.setVisible(false);
 
+        if (this.ohjelma.sanojenMaara() == 0) {
+            JOptionPane.showMessageDialog(this.frame, "Tiedosto on tyhjä!", "Virhe", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
         int kerrat = Integer.parseInt(maara);
         if (this.ohjelma.sanojenMaara() < kerrat) {
             kerrat = this.ohjelma.sanojenMaara();
@@ -63,6 +68,8 @@ public class KertojenTarkistaja implements ActionListener {
                 this.frame.repaint();
             }
         }
+
+
 
         YhdistaSanaparit tehtava = new YhdistaSanaparit(this.frame, this.ohjelma, kerrat);
 

@@ -18,6 +18,7 @@ public class GraafinenOhjelma implements Runnable {
 
     public GraafinenOhjelma() {
         this.ohjelma = new Sanaohjelma();
+        this.ohjelma.asetaToistojenTiheys(2);
     }
 
     @Override
@@ -34,11 +35,11 @@ public class GraafinenOhjelma implements Runnable {
     }
 
     private void luoKomponentit(Container container) {
-//        container.add(new Kirjautuminen(this.frame, this.ohjelma));
-//        container.setLayout(new BoxLayout(container, BoxLayout.Y_AXIS));
+        container.add(new Kirjautuminen(this.frame, this.ohjelma));
+        container.setLayout(new BoxLayout(container, BoxLayout.Y_AXIS));
         
-        container.add(new YllapitoGraafinen(this.frame, this.ohjelma));
-        container.setLayout(new GridLayout(2, 2));
+//        container.add(new YllapitoGraafinen(this.frame, this.ohjelma));
+//        container.setLayout(new GridLayout(2, 2));
     }
 
     public JFrame getFrame() {
