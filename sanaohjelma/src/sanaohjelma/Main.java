@@ -12,7 +12,7 @@ public class Main {
     public static void main(String args[]) {
         Kielet.asetaKielet("suomi", "venäjä");
 
-        Sanaohjelma ohjelma = new Sanaohjelma();
+        Hallinta ohjelma = new Hallinta();
         ohjelma.asetaToistojenTiheys(2);
         while (true) {
             System.out.println("Oletko (1) käyttäjä vai (2) ylläpito?");

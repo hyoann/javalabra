@@ -13,15 +13,15 @@ import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import sanaohjelma.Sanaohjelma;
+import sanaohjelma.Hallinta;
 
 public class ListanKuuntelija implements ListSelectionListener {
 
     private JFrame frame;
-    private Sanaohjelma ohjelma;
+    private Hallinta ohjelma;
     private JList tiedostot;
 
-    public ListanKuuntelija(JFrame frame, Sanaohjelma ohjelma, JList tiedostot) {
+    public ListanKuuntelija(JFrame frame, Hallinta ohjelma, JList tiedostot) {
         this.frame = frame;
         this.ohjelma = ohjelma;
         this.tiedostot = tiedostot;

@@ -8,16 +8,16 @@ import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
-import sanaohjelma.Sanaohjelma;
+import sanaohjelma.Hallinta;
 import sanaohjelma.kayttoliittyma.Kayttaja.Valikko;
 
 public class KirjautumisenTunnistaja implements ActionListener {
     private JFrame frame;
     private JTextField tunnus;
     private JPasswordField salasana;
-    private Sanaohjelma ohjelma;
+    private Hallinta ohjelma;
 
-    public KirjautumisenTunnistaja(JFrame frame, JTextField tunnus, JPasswordField salasana, Sanaohjelma ohjelma) {
+    public KirjautumisenTunnistaja(JFrame frame, JTextField tunnus, JPasswordField salasana, Hallinta ohjelma) {
         this.frame = frame;
         this.tunnus = tunnus;
         this.salasana = salasana;

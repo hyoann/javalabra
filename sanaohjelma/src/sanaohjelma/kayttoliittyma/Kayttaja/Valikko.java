@@ -7,15 +7,15 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.ListSelectionModel;
-import sanaohjelma.Sanaohjelma;
+import sanaohjelma.Hallinta;
 import sanaohjelma.kayttoliittyma.Tapahtumankuuntelijat.Kayttaja.ListanKuuntelija;
 import sanaohjelma.kayttoliittyma.Tapahtumankuuntelijat.Kayttaja.ValikonKuuntelija;
 
 public class Valikko extends JPanel{
     private JFrame frame;
-    private Sanaohjelma ohjelma;
+    private Hallinta ohjelma;
     
-    public Valikko(JFrame frame, Sanaohjelma ohjelma) {
+    public Valikko(JFrame frame, Hallinta ohjelma) {
         this.frame = frame;
         this.ohjelma = ohjelma;
         this.luoKomponentit();

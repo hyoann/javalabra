@@ -2,13 +2,13 @@
 package sanaohjelma.kayttoliittyma.Kayttaja;
 
 import javax.swing.JFrame;
-import sanaohjelma.Sanaohjelma;
+import sanaohjelma.Hallinta;
 
 public class Lopetus  {
     private JFrame frame;
-    private Sanaohjelma ohjelma;
+    private Hallinta ohjelma;
     
-    public Lopetus(JFrame frame, Sanaohjelma ohjelma) {
+    public Lopetus(JFrame frame, Hallinta ohjelma) {
         this.frame = frame;
         this.ohjelma = ohjelma;
         this.lopetus();

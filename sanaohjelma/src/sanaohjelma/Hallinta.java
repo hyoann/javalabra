@@ -12,7 +12,7 @@ import sanaohjelma.sovelluslogiikka.Tiedostonlukija;
 import sanaohjelma.sovelluslogiikka.TiedostoonKirjoittaja;
 import sanaohjelma.sovelluslogiikka.YhdistaSanat;
 
-public class Sanaohjelma {
+public class Hallinta {
 
     private Sanat sanat;
     private Tiedostonlukija tiedostonlukija;
@@ -22,7 +22,7 @@ public class Sanaohjelma {
     private YhdistaSanat yhdista;
     private int toistotiheys;
 
-    public Sanaohjelma() {
+    public Hallinta() {
         this.sanat = null;
         this.tiedostonlukija = new Tiedostonlukija();
         this.kayttaja = null;

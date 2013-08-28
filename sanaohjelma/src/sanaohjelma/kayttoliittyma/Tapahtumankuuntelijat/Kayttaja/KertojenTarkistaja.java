@@ -7,17 +7,17 @@ import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import sanaohjelma.Sanaohjelma;
+import sanaohjelma.Hallinta;
 import sanaohjelma.kayttoliittyma.Kayttaja.YhdistaSanaparit;
 
 public class KertojenTarkistaja implements ActionListener {
 
     private JFrame frame;
-    private Sanaohjelma ohjelma;
+    private Hallinta ohjelma;
     private JDialog kysymys;
     private JComboBox maarat;
 
-    public KertojenTarkistaja(JFrame frame, Sanaohjelma ohjelma, JDialog kysymys, JComboBox maarat) {
+    public KertojenTarkistaja(JFrame frame, Hallinta ohjelma, JDialog kysymys, JComboBox maarat) {
         this.frame = frame;
         this.ohjelma = ohjelma;
         this.kysymys = kysymys;

@@ -7,12 +7,12 @@ import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import sanaohjelma.Sanaohjelma;
+import sanaohjelma.Hallinta;
 
 public class VastauksenTarkistaja implements ActionListener {
 
     private JFrame frame;
-    private Sanaohjelma ohjelma;
+    private Hallinta ohjelma;
     private JLabel kysyttySana;
     private JTextField vastaus;
     private String kieli;
@@ -22,7 +22,7 @@ public class VastauksenTarkistaja implements ActionListener {
     private JLabel tulos;
     private int oikein;
 
-    public VastauksenTarkistaja(JFrame frame, Sanaohjelma ohjelma, JLabel kysyttySana, JTextField vastaus, String kieli, int kerrat, JLabel kysymysNro) {
+    public VastauksenTarkistaja(JFrame frame, Hallinta ohjelma, JLabel kysyttySana, JTextField vastaus, String kieli, int kerrat, JLabel kysymysNro) {
         this.frame = frame;
         this.ohjelma = ohjelma;
         this.kysyttySana = kysyttySana;

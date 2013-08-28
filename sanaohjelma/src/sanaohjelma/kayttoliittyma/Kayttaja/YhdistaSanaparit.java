@@ -5,16 +5,16 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import sanaohjelma.Sanaohjelma;
+import sanaohjelma.Hallinta;
 import sanaohjelma.kayttoliittyma.Tapahtumankuuntelijat.Kayttaja.ParienTarkistaja;
 
 public class YhdistaSanaparit extends JPanel {
 
     private JFrame frame;
-    private Sanaohjelma ohjelma;
+    private Hallinta ohjelma;
     private int maara;
 
-    public YhdistaSanaparit(JFrame frame, Sanaohjelma ohjelma, int maara) {
+    public YhdistaSanaparit(JFrame frame, Hallinta ohjelma, int maara) {
         this.frame = frame;
         this.ohjelma = ohjelma;
         this.maara = maara;

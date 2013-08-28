@@ -9,16 +9,16 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
-import sanaohjelma.Sanaohjelma;
+import sanaohjelma.Hallinta;
 import sanaohjelma.sovelluslogiikka.Tiedostonlukija;
 
 public class GraafinenOhjelma implements Runnable {
 
     private JFrame frame;
-    private Sanaohjelma ohjelma;
+    private Hallinta ohjelma;
 
     public GraafinenOhjelma() {
-        this.ohjelma = new Sanaohjelma();
+        this.ohjelma = new Hallinta();
         this.ohjelma.asetaToistojenTiheys(2);
     }
 

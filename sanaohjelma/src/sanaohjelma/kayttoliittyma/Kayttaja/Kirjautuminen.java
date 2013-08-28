@@ -7,14 +7,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import sanaohjelma.Sanaohjelma;
+import sanaohjelma.Hallinta;
 import sanaohjelma.kayttoliittyma.Tapahtumankuuntelijat.Kayttaja.KirjautumisenTunnistaja;
 
 public class Kirjautuminen extends JPanel {
     private JFrame frame;
-    private Sanaohjelma ohjelma;
+    private Hallinta ohjelma;
 
-    public Kirjautuminen(JFrame frame, Sanaohjelma ohjelma) {
+    public Kirjautuminen(JFrame frame, Hallinta ohjelma) {
         this.frame = frame;
         this.ohjelma = ohjelma;
         luoKomponentit();

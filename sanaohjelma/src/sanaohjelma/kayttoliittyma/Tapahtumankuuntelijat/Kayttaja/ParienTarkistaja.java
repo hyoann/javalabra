@@ -5,19 +5,19 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import sanaohjelma.Sanaohjelma;
+import sanaohjelma.Hallinta;
 
 public class ParienTarkistaja implements ActionListener {
 
     private JFrame frame;
-    private Sanaohjelma ohjelma;
+    private Hallinta ohjelma;
     private JTextField vastausAlue;
     private int oikein;
     private int vastaus;
     private int sanapareja;
     private JLabel vastauksesi;
 
-    public ParienTarkistaja(JFrame frame, Sanaohjelma ohjelma, JTextField vastausAlue, int sanapareja) {
+    public ParienTarkistaja(JFrame frame, Hallinta ohjelma, JTextField vastausAlue, int sanapareja) {
         this.frame = frame;
         this.ohjelma = ohjelma;
         this.vastausAlue = vastausAlue;

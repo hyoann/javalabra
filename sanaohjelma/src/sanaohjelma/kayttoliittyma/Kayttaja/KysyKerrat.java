@@ -6,14 +6,14 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import sanaohjelma.Sanaohjelma;
+import sanaohjelma.Hallinta;
 import sanaohjelma.kayttoliittyma.Tapahtumankuuntelijat.Kayttaja.KertojenTarkistaja;
 
 public class KysyKerrat extends JDialog {
     private JFrame frame;
-    private Sanaohjelma ohjelma;
+    private Hallinta ohjelma;
 
-    public KysyKerrat(JFrame frame, Sanaohjelma ohjelma) {
+    public KysyKerrat(JFrame frame, Hallinta ohjelma) {
         super(frame, "Yhdistä sanaparit", true);
         this.frame = frame;
         this.ohjelma = ohjelma;

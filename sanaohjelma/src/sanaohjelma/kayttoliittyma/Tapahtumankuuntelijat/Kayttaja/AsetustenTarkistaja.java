@@ -12,7 +12,7 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
-import sanaohjelma.Sanaohjelma;
+import sanaohjelma.Hallinta;
 import sanaohjelma.kayttoliittyma.Kayttaja.Kaannostehtava;
 
 public class AsetustenTarkistaja implements ActionListener {
@@ -20,11 +20,11 @@ public class AsetustenTarkistaja implements ActionListener {
     private JTextField kerrat;
     private ButtonGroup vaihtoehdot;
     private JFrame frame;
-    private Sanaohjelma ohjelma;
+    private Hallinta ohjelma;
     private JList lista;
     private JDialog dialogi;
 
-    public AsetustenTarkistaja(JTextField kerrat, ButtonGroup vaihtoehdot, JFrame frame, Sanaohjelma ohjelma, JList lista, JDialog dialogi) {
+    public AsetustenTarkistaja(JTextField kerrat, ButtonGroup vaihtoehdot, JFrame frame, Hallinta ohjelma, JList lista, JDialog dialogi) {
         this.kerrat = kerrat;
         this.vaihtoehdot = vaihtoehdot;
         this.frame = frame;

@@ -11,16 +11,16 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
-import sanaohjelma.Sanaohjelma;
+import sanaohjelma.Hallinta;
 import sanaohjelma.kayttoliittyma.Tapahtumankuuntelijat.Yllapito.TiedostojenKuuntelija;
 import sanaohjelma.kayttoliittyma.Tapahtumankuuntelijat.Yllapito.TiedostonPoisto;
 
 public class YllapitoGraafinen extends JPanel {
 
     private JFrame frame;
-    private Sanaohjelma ohjelma;
+    private Hallinta ohjelma;
 
-    public YllapitoGraafinen(JFrame frame, Sanaohjelma ohjelma) {
+    public YllapitoGraafinen(JFrame frame, Hallinta ohjelma) {
         this.frame = frame;
         this.ohjelma = ohjelma;
         this.luoKomponentit();

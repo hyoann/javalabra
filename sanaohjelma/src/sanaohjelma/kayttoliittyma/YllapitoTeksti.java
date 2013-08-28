@@ -1,15 +1,15 @@
 package sanaohjelma.kayttoliittyma;
 
 import java.util.Scanner;
-import sanaohjelma.Sanaohjelma;
+import sanaohjelma.Hallinta;
 import sanaohjelma.sovelluslogiikka.Kielet;
 
 public class YllapitoTeksti {
 
     private Scanner lukija;
-    private Sanaohjelma ohjelma;
+    private Hallinta ohjelma;
 
-    public YllapitoTeksti(Sanaohjelma ohjelma) {
+    public YllapitoTeksti(Hallinta ohjelma) {
         this.lukija = new Scanner(System.in, "UTF-8");
         this.ohjelma = ohjelma;
     }

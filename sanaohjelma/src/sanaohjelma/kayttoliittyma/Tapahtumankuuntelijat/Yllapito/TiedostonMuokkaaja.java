@@ -7,17 +7,17 @@ import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import sanaohjelma.Sanaohjelma;
+import sanaohjelma.Hallinta;
 
 public class TiedostonMuokkaaja implements ActionListener {
     private JFrame frame;
-    private Sanaohjelma ohjelma;
+    private Hallinta ohjelma;
     private JList tiedostot;
     private JTextField lisattavaKielella1;
     private JTextField lisattavaKielella2;
     private JTextField poistettavaKiella1;
     
-    public TiedostonMuokkaaja(JFrame frame, Sanaohjelma ohjelma, JList tiedostot, JTextField lisattavaKielella1, JTextField lisattavaKielella2, JTextField poistettavaKiella1 ) {
+    public TiedostonMuokkaaja(JFrame frame, Hallinta ohjelma, JList tiedostot, JTextField lisattavaKielella1, JTextField lisattavaKielella2, JTextField poistettavaKiella1 ) {
         this.frame = frame;
         this.ohjelma = ohjelma;
         this.tiedostot = tiedostot;

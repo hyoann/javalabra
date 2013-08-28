@@ -10,16 +10,16 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
-import sanaohjelma.Sanaohjelma;
+import sanaohjelma.Hallinta;
 import sanaohjelma.kayttoliittyma.Tapahtumankuuntelijat.Kayttaja.AsetustenTarkistaja;
 import sanaohjelma.sovelluslogiikka.Kielet;
 
 public class TehtavanAsetukset extends JDialog{
     private JFrame frame;
-    private Sanaohjelma ohjelma;
+    private Hallinta ohjelma;
     private JList tiedostot;
     
-    public TehtavanAsetukset(JFrame frame, Sanaohjelma ohjelma, JList tiedostot) {
+    public TehtavanAsetukset(JFrame frame, Hallinta ohjelma, JList tiedostot) {
         super(frame, "Käännostehtävä", true);
         this.frame = frame;
         this.ohjelma = ohjelma;

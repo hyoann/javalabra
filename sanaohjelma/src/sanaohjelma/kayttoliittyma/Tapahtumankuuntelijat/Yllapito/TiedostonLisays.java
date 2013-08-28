@@ -7,16 +7,16 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
-import sanaohjelma.Sanaohjelma;
+import sanaohjelma.Hallinta;
 
 public class TiedostonLisays implements ActionListener {
 
     private JFrame frame;
-    private Sanaohjelma ohjelma;
+    private Hallinta ohjelma;
     private File tiedosto;
     private JPanel lisataanko;
 
-    public TiedostonLisays(JFrame frame, Sanaohjelma ohjelma, File tiedosto, JPanel lisataanko) {
+    public TiedostonLisays(JFrame frame, Hallinta ohjelma, File tiedosto, JPanel lisataanko) {
         this.frame = frame;
         this.ohjelma = ohjelma;
         this.tiedosto = tiedosto;

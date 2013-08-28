@@ -7,7 +7,7 @@ import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
-import sanaohjelma.Sanaohjelma;
+import sanaohjelma.Hallinta;
 import sanaohjelma.kayttoliittyma.Kayttaja.KayttajanTiedot;
 import sanaohjelma.kayttoliittyma.Kayttaja.KysyKerrat;
 import sanaohjelma.kayttoliittyma.Kayttaja.Lopetus;
@@ -15,11 +15,11 @@ import sanaohjelma.kayttoliittyma.Kayttaja.TehtavanAsetukset;
 
 public class ValikonKuuntelija implements ActionListener {
 
-    private Sanaohjelma ohjelma;
+    private Hallinta ohjelma;
     private JFrame frame;
     private JList lista;
 
-    public ValikonKuuntelija(Sanaohjelma ohjelma, JFrame frame, JList lista) {
+    public ValikonKuuntelija(Hallinta ohjelma, JFrame frame, JList lista) {
         this.ohjelma = ohjelma;
         this.frame = frame;
         this.lista = lista;

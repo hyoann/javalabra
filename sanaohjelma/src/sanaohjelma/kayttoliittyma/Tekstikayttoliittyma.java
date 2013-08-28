@@ -3,15 +3,15 @@ package sanaohjelma.kayttoliittyma;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
-import sanaohjelma.Sanaohjelma;
+import sanaohjelma.Hallinta;
 import sanaohjelma.sovelluslogiikka.Kielet;
 
 public class Tekstikayttoliittyma {
 
-    private Sanaohjelma ohjelma;
+    private Hallinta ohjelma;
     private Scanner lukija;
 
-    public Tekstikayttoliittyma(Sanaohjelma ohjelma) {
+    public Tekstikayttoliittyma(Hallinta ohjelma) {
         this.ohjelma = ohjelma;
         this.lukija = new Scanner(System.in, "UTF-8");
     }

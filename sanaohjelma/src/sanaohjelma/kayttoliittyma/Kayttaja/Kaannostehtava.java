@@ -4,17 +4,17 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import sanaohjelma.Sanaohjelma;
+import sanaohjelma.Hallinta;
 import sanaohjelma.kayttoliittyma.Tapahtumankuuntelijat.Kayttaja.VastauksenTarkistaja;
 
 public class Kaannostehtava extends JPanel {
 
     private JFrame frame;
-    private Sanaohjelma ohjelma;
+    private Hallinta ohjelma;
     private String kieli;
     private int kerrat;
 
-    public Kaannostehtava(JFrame frame, Sanaohjelma ohjelma, String kieli, int kerrat) {
+    public Kaannostehtava(JFrame frame, Hallinta ohjelma, String kieli, int kerrat) {
         this.frame = frame;
         this.ohjelma = ohjelma;
         this.kieli = kieli;

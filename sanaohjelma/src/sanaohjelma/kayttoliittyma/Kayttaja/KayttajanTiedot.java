@@ -3,12 +3,12 @@ package sanaohjelma.kayttoliittyma.Kayttaja;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import sanaohjelma.Sanaohjelma;
+import sanaohjelma.Hallinta;
 
 public class KayttajanTiedot extends JPanel {
-    private Sanaohjelma ohjelma;
+    private Hallinta ohjelma;
     
-    public KayttajanTiedot(Sanaohjelma ohjelma) {
+    public KayttajanTiedot(Hallinta ohjelma) {
         this.ohjelma = ohjelma;
         this.luoKomponentit();
     }

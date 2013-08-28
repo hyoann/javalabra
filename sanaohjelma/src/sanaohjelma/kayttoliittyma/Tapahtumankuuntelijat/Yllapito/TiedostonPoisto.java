@@ -10,17 +10,17 @@ import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import sanaohjelma.Sanaohjelma;
+import sanaohjelma.Hallinta;
 import sanaohjelma.kayttoliittyma.Yllapito.YllapitoGraafinen;
 
 public class TiedostonPoisto implements ActionListener {
     
     private JFrame frame;
-    private Sanaohjelma ohjelma;
+    private Hallinta ohjelma;
     private JList tiedostot;
 
 
-    public TiedostonPoisto(JFrame frame, Sanaohjelma ohjelma, JList tiedostot) {
+    public TiedostonPoisto(JFrame frame, Hallinta ohjelma, JList tiedostot) {
         this.frame = frame;
         this.ohjelma = ohjelma;
         this.tiedostot = tiedostot;

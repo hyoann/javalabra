@@ -14,16 +14,16 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import sanaohjelma.Sanaohjelma;
+import sanaohjelma.Hallinta;
 import sanaohjelma.sovelluslogiikka.Kielet;
 
 public class TiedostojenKuuntelija implements ListSelectionListener {
 
     private JFrame frame;
-    private Sanaohjelma ohjelma;
+    private Hallinta ohjelma;
     private JList tiedostot;
 
-    public TiedostojenKuuntelija(JFrame frame, Sanaohjelma ohjelma, JList tiedostot) {
+    public TiedostojenKuuntelija(JFrame frame, Hallinta ohjelma, JList tiedostot) {
         this.frame = frame;
         this.ohjelma = ohjelma;
         this.tiedostot = tiedostot;

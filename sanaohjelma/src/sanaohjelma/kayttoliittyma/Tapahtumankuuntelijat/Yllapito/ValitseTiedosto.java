@@ -10,14 +10,14 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import sanaohjelma.Sanaohjelma;
+import sanaohjelma.Hallinta;
 
 public class ValitseTiedosto implements ActionListener {
     private JFrame frame;
-    private Sanaohjelma ohjelma;
+    private Hallinta ohjelma;
     private JFileChooser tiedostot;
     
-    public ValitseTiedosto(JFrame frame, Sanaohjelma ohjelma) {
+    public ValitseTiedosto(JFrame frame, Hallinta ohjelma) {
         this.frame = frame;
         this.ohjelma = ohjelma;
         this.tiedostot = new JFileChooser();
