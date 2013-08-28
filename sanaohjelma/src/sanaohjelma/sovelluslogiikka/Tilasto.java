@@ -7,6 +7,10 @@ public class Tilasto {
     private int oikeatVastaukset;
 
     public Tilasto(int kysytytSanat, int oikeatVastaukset) {
+        if (kysytytSanat < 0 || oikeatVastaukset < 0) {
+            kysytytSanat = 0;
+            oikeatVastaukset = 0;
+        }
         this.kysytytSanat = kysytytSanat;
         this.oikeatVastaukset = oikeatVastaukset;
     }

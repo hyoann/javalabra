@@ -11,7 +11,7 @@ public class Kayttajat {
     }
 
     public boolean lisaaKayttaja(String tunnus, Kayttaja kayttaja) {
-        if (this.kayttajat.containsKey(tunnus)) {
+        if (this.kayttajat.containsKey(tunnus) || kayttaja == null || tunnus == null) {
             return false;
         } else {
             this.kayttajat.put(tunnus, kayttaja);

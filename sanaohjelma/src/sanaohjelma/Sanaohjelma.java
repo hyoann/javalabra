@@ -41,7 +41,7 @@ public class Sanaohjelma {
 
         if (this.kayttajat.lisaaKayttaja(tunnus, kayttaja)) {
             TiedostoonKirjoittaja kirjoittaja = new TiedostoonKirjoittaja();
-            kirjoittaja.paivitaKayttajatTiedostoon(this.kayttajat);
+            kirjoittaja.kirjoitaTiedostoon("src/sanaohjelma/kayttajat.txt", this.kayttajat.toString());
             return true;
         } else {
             return false;
@@ -72,7 +72,7 @@ public class Sanaohjelma {
 
     public void tallennaTilasto() {
         TiedostoonKirjoittaja kirjoittaja = new TiedostoonKirjoittaja();
-        kirjoittaja.paivitaKayttajatTiedostoon(this.kayttajat);
+        kirjoittaja.kirjoitaTiedostoon("src/sanaohjelma/kayttajat.txt", this.kayttajat.toString());
     }
 
     public void kasvataOikeinVastattuja(int maara) {
@@ -141,12 +141,12 @@ public class Sanaohjelma {
         if (!sanatTemp.poista(sana)) {
             return false;
         }
-        kirjoittaja.paivitaSanatTiedostossa(sanatTemp, tiedostonNimi);
+        kirjoittaja.kirjoitaTiedostoon("src/sanaohjelma/Sanatiedostot/" + tiedostonNimi, sanatTemp.toString());
         return true;
     }
 
     public ArrayList<String> tiedostojenNimet() {
-        return this.tiedostonlukija.tiedostojenNimet();
+        return this.tiedostonlukija.tiedostojenNimet("src/sanaohjelma/Sanatiedostot");
     }
 
     public String haeTiedostonNimi(int indeksi) {

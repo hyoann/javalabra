@@ -30,20 +30,20 @@ public class MokausMuistio {
     }
 
     public String annaJokuSana(String kieli) {
-        ArrayList<String> lista = this.kieli1;
+        ArrayList<String> mokatutSanat = this.kieli1;
         
         if (kieli.equals(Kielet.getKieli2())) {
-            lista = this.kieli2;
+            mokatutSanat = this.kieli2;
         }
         
-        if (lista.isEmpty()) {
+        if (mokatutSanat.isEmpty()) {
             return null;
         }
 
 
         Random arpoja = new Random();
-        int indeksi = arpoja.nextInt(lista.size());
+        int indeksi = arpoja.nextInt(mokatutSanat.size());
 
-        return lista.get(indeksi);
+        return mokatutSanat.get(indeksi);
     }
 }

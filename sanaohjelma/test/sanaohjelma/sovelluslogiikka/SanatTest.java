@@ -69,4 +69,14 @@ public class SanatTest {
         sanat.lisaa("kukka", "flower");
         assertEquals(sanat.toString(), "hevonen - horse\nkukka - flower\n");
     }
+    
+    @Test
+    public void poistaSanaPalauttaaFalseKunSanaaEiOle() {
+        assertFalse(sanat.poista("nyt tulee false"));
+    }
+    
+    @Test
+    public void annaJokuSanaPalauttaaNullKunSanojaEiOle() {
+        assertNull(sanat.annaJokuSana(Kielet.getKieli1()));
+    }
 }

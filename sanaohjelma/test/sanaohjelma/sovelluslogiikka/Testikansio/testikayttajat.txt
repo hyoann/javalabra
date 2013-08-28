@@ -1,0 +1,2 @@
+nimi, tunnus, salasana, 0, 0
+pekka, pek1, ppp, 2, 1

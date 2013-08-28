@@ -26,6 +26,9 @@ public class Sanat {
      * @param kieli2 Sanan käännös halutulla kielellä
      */
     public void lisaa(String kieli1, String kieli2) {
+        if (kieli1 == null || kieli2 == null) {
+            return;
+        }
         ekaToka.put(kieli1, kieli2);
         tokaEka.put(kieli2, kieli1);
     }

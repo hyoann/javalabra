@@ -54,22 +54,4 @@ public class TiedostoonKirjoittaja {
         String tallennettava = sana1 + " - " + sana2;
         this.lisaaTiedostoon(tiedosto, tallennettava);
     }
-    
-    /**
-     * Metodi kirjoittaa Sanat-luokan merkkijonoesityksen tiedostoon.
-     *
-     * @param sanat Sanat-luokan ilmentymä, joka halutaan tallentaa.
-     */
-    public void paivitaSanatTiedostossa(Sanat sanat, String tiedostonNimi) {
-        this.kirjoitaTiedostoon("src/sanaohjelma/Sanatiedostot/" + tiedostonNimi, sanat.toString());    
-    }
-    
-    /**
-     *Metodi tallentaa kayttajien tiedot kayttajat.txt-tiedostoon.
-     * 
-     * @param kayttajat Järjestelmän käyttäjät
-     */
-    public void paivitaKayttajatTiedostoon(Kayttajat kayttajat) {
-        this.kirjoitaTiedostoon("src/sanaohjelma/kayttajat.txt", kayttajat.toString() );
-    }
 }

@@ -46,30 +46,24 @@ public class Tiedostonlukija {
     public Kayttajat haeKayttajat(ArrayList<String> rivit) {
         Kayttajat kayttajat = new Kayttajat();
 
-        String tunnus = "";
-        String nimi = "";
-        String salasana = "";
-        int kysytytSanat = 0;
-        int mokatut = 0;
-
         for (String rivi : rivit) {
             try {
+                //Tiedot ovat tiedostossa muodossa 'tunnus, nimi, salasana, kysyttyjen sanojen maara, oikeiden vastausten maara'
                 String[] tiedot = rivi.split(", ");
-                tunnus = tiedot[0];
-                nimi = tiedot[1];
-                salasana = tiedot[2];
-                //Tiedot ovat tiedostossa muodossa 'tunnus, nimi, salasana, kysytytSanat, oikeat vastaukset'
-                kysytytSanat = Integer.parseInt(tiedot[3]);
-                mokatut = Integer.parseInt(tiedot[4]);
+                String tunnus = tiedot[0];
+                String nimi = tiedot[1];
+                String salasana = tiedot[2];
+                int kysytytSanat = Integer.parseInt(tiedot[3]);
+                int mokatut = Integer.parseInt(tiedot[4]);
+
+                Tilasto tilasto = new Tilasto(kysytytSanat, mokatut);
+                Kayttaja kayttaja = new Kayttaja(tunnus, nimi, salasana, tilasto);
+                kayttajat.lisaaKayttaja(tunnus, kayttaja);
+
             } catch (Exception e) {
                 //Käyttäjiä ei ole tai tiedot ovat tallennettu väärässä muodossa.
-                return null;
+                System.out.println("Tiedotossa on käyttäjiä, joiden tiedot väärässä muodossa tai käyttäjiä ei ole");
             }
-            Tilasto tilasto = new Tilasto(kysytytSanat, mokatut);
-
-            Kayttaja kayttaja = new Kayttaja(tunnus, nimi, salasana, tilasto);
-
-            kayttajat.lisaaKayttaja(tunnus, kayttaja);
         }
         return kayttajat;
     }
@@ -83,20 +77,33 @@ public class Tiedostonlukija {
 
     public Sanat tuoSanat(File tiedosto) {
         ArrayList<String> rivit = this.lueTiedosto(tiedosto);
+
+        if (rivit == null) {
+            return null;
+        }
         Sanat sanat = tallennaSanaparit(rivit);
         return sanat;
     }
 
     public Kayttajat tuoKayttajat(File tiedosto) {
         ArrayList<String> rivit = this.lueTiedosto(tiedosto);
+
+        if (rivit == null) {
+            return null;
+        }
+
         Kayttajat kayttajat = haeKayttajat(rivit);
         return kayttajat;
     }
 
-    public ArrayList<String> tiedostojenNimet() {
-        File kansio = new File("src/sanaohjelma/Sanatiedostot");
+    public ArrayList<String> tiedostojenNimet(String polku) {
+        File kansio = new File(polku);
         File[] tiedostot = kansio.listFiles();
 
+        if (tiedostot == null) {
+            return null;
+        }
+        
         ArrayList<String> nimet = new ArrayList<String>();
 
         for (File tiedosto : tiedostot) {

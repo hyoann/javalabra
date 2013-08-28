@@ -18,6 +18,9 @@ public class Sanavalitsin {
      * @param mokailut Väärin arvatut sanat
      */
     public Sanavalitsin(int vali, Tilasto tilasto, Sanat sanat, MokausMuistio muistio) {
+        if (vali < 0) {
+            vali = 1;
+        }
         this.toistovali = vali;
         this.sanat = sanat;
         this.tilasto = tilasto;
@@ -35,7 +38,6 @@ public class Sanavalitsin {
      */
     public String annaSana(String kieli) {
         //onko aika  kysyä sanaa mokattujen sanojen listalta
-        System.out.println("tilaston sanamäär" + tilasto.sanamaara());
         if (tilasto.sanamaara() != 0 && tilasto.sanamaara() % this.toistovali == 0) {
             String kysyttavaSana = this.muistio.annaJokuSana(kieli);
             if (kysyttavaSana != null) {
