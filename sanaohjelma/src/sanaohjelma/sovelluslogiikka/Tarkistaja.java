@@ -2,10 +2,18 @@
 package sanaohjelma.sovelluslogiikka;
 
 /**
- *Tarkistaja-luokka huolehtii vastausten tarkistamisesta.
+ *Tarkistaja-luokka huolehtii käännöstehtävän vastausten tarkistamisesta.
  */
 public class Tarkistaja {
+    
+    /**
+     * Järjestelmään tuodut sanat
+     */
     private Sanat sanat;
+    
+    /**
+     * Minkä kielisiä sanoja taristetaan
+     */
     private String kieli;
     
     /**

@@ -12,6 +12,7 @@ public class Main {
     public static void main(String args[]) {
         Kielet.asetaKielet("suomi", "venäjä");
 
+//Käynnistää tekstikäyttöliittymän:
         Hallinta ohjelma = new Hallinta();
         ohjelma.asetaToistojenTiheys(2);
         while (true) {
@@ -28,6 +29,8 @@ public class Main {
             }
         }
         
+        
+//Graafisen käyttöliittymän käynnistys:       
 //        GraafinenOhjelma ohjelmaGraafinen = new GraafinenOhjelma();
 //        SwingUtilities.invokeLater(ohjelmaGraafinen);
     }

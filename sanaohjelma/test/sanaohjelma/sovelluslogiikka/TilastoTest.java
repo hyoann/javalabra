@@ -60,10 +60,4 @@ public class TilastoTest {
         
         assertEquals(tilasto.toString(), tulos);
     }
-    
-    @Test
-    public void pyoristaDesimaaliPyoristaaOikein() {
-        double desimaali = 3.55532623;
-        assertEquals(tilasto.pyoristaDesimaali(desimaali), "3,56");
-    }
 }

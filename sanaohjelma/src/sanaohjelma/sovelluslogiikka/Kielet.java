@@ -1,5 +1,9 @@
 package sanaohjelma.sovelluslogiikka;
 
+/**
+ * Kielet-luokassa määritellään ohjelmassa kysyttävien kielten nimet. Metodit ovat staattisia
+ * jotta niitä voisi kutsua helposti muualta ohjelmasta.
+ */
 public class Kielet {
 
     private static String kieli1;

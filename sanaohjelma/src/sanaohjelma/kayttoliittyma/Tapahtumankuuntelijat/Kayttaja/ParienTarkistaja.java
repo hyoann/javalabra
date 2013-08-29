@@ -42,7 +42,7 @@ public class ParienTarkistaja implements ActionListener {
             return;
         }
 
-        if (this.ohjelma.tarkistaVastaus(this.vastausAlue.getText())) {
+        if (this.ohjelma.tarkistaYhdistaVastaus(this.vastausAlue.getText())) {
             this.oikein++;
         }
 

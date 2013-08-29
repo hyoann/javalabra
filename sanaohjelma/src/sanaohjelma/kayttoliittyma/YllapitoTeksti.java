@@ -4,16 +4,23 @@ import java.util.Scanner;
 import sanaohjelma.Hallinta;
 import sanaohjelma.sovelluslogiikka.Kielet;
 
+/**
+ * Luo ylläpidon tekstikäyttäliittymän
+ */
 public class YllapitoTeksti {
 
     private Scanner lukija;
     private Hallinta ohjelma;
 
+    
     public YllapitoTeksti(Hallinta ohjelma) {
         this.lukija = new Scanner(System.in, "UTF-8");
         this.ohjelma = ohjelma;
     }
 
+    /**
+     * Listaa toiminnot
+     */
     public void kaynnista() {
         while (true) {
             System.out.println("Valitse toiminto:");
@@ -42,7 +49,7 @@ public class YllapitoTeksti {
         }
     }
 
-    public void tiedostotLuettelona() {
+    private void tiedostotLuettelona() {
         int indeksi = 0;
 
         for (String nimi : this.ohjelma.tiedostojenNimet()) {
@@ -51,7 +58,7 @@ public class YllapitoTeksti {
         }
     }
 
-    public void muokkausvalikko() {
+    private void muokkausvalikko() {
         String tiedosto = this.valitseTiedosto();
         while (true) {
             if (tiedosto == null) {
@@ -92,7 +99,7 @@ public class YllapitoTeksti {
         }
     }
 
-    public String valitseTiedosto() {
+    private String valitseTiedosto() {
         System.out.println("Valitse muokattava tiedosto:");
         this.tiedostotLuettelona();
         System.out.println("");
@@ -116,7 +123,7 @@ public class YllapitoTeksti {
         return tiedostonNimi;
     }
 
-    public void naytaSisalto(String tiedostonNimi) {
+    private void naytaSisalto(String tiedostonNimi) {
         if (this.ohjelma.naytaSisalto(tiedostonNimi) == null) {
             System.out.println("Tiedosto on tyhjä tai sitä ei ole olemassa!");
         } else {
@@ -124,7 +131,7 @@ public class YllapitoTeksti {
         }
     }
 
-    public void poistaSana(String tiedostonNimi) {
+    private void poistaSana(String tiedostonNimi) {
         System.out.print("Anna poistettava sana kielellä " + Kielet.getKieli1() + ": ");
         String sana = lukija.nextLine();
 
@@ -136,7 +143,7 @@ public class YllapitoTeksti {
 
     }
 
-    public void lisaaSana(String tiedostonNimi) {
+    private void lisaaSana(String tiedostonNimi) {
         System.out.print("Anna sana kielellä " + Kielet.getKieli1() + ": ");
         String sana1 = lukija.nextLine();
 
@@ -151,8 +158,6 @@ public class YllapitoTeksti {
         } else {
             System.out.println("Lisättävä sana ei saa olla tyhjä!");
         }
-
-
     }
 
     private boolean poistaTiedosto(String tiedostonNimi) {

@@ -1,11 +1,14 @@
 package sanaohjelma.kayttoliittyma;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Scanner;
 import sanaohjelma.Hallinta;
 import sanaohjelma.sovelluslogiikka.Kielet;
 
+/**
+ *
+ * Sisältää käyttäjän tekstikäyttöliittymän
+ */
 public class Tekstikayttoliittyma {
 
     private Hallinta ohjelma;
@@ -24,7 +27,7 @@ public class Tekstikayttoliittyma {
             System.out.print("Kirjaudu sisään (1) tai luo tunnus (2): ");
             String valinta = lukija.nextLine();
             System.out.println("");
-            
+
             if (valinta.equals("1")) {
                 if (this.kirjauduSisaan()) {
                     //kayttaja pääsi sisään joten voidaan poistua silmukasta
@@ -35,13 +38,13 @@ public class Tekstikayttoliittyma {
             } else {
                 System.out.println("Valitse 1 tai 2");
             }
-        
+
             System.out.println("");
         }
 
     }
 
-    public void luoTunnus() {
+    private void luoTunnus() {
         String tunnus;
         String salasana;
         String nimi;
@@ -62,14 +65,14 @@ public class Tekstikayttoliittyma {
             break;
         }
 
-        if (this.ohjelma.lisaaKayttaja(tunnus, salasana, nimi)) {
+        if (this.ohjelma.lisaaKayttaja(tunnus, nimi, salasana)) {
             System.out.println("Tunnuksen luonti onnistui!");
         } else {
             System.out.println("Tunnus on jo olemassa!");
         }
     }
 
-    public boolean kirjauduSisaan() {
+    private boolean kirjauduSisaan() {
         System.out.print("Anna käyttäjätunnus: ");
         String tunnus = lukija.nextLine();
         System.out.print("Anna salasana: ");
@@ -89,7 +92,7 @@ public class Tekstikayttoliittyma {
         return true;
     }
 
-    public void kaynnista() {
+    private void kaynnista() {
         while (true) {
             this.valikko();
 
@@ -116,7 +119,7 @@ public class Tekstikayttoliittyma {
         System.out.println("Kiitos hei!");
     }
 
-    public void valikko() {
+    private void valikko() {
         System.out.println("Valitse seuraavista toiminnoista: ");
         System.out.println("    1 - Listaa tiedostot");
         System.out.println("    2 - Harjoittele sanoja");
@@ -125,7 +128,7 @@ public class Tekstikayttoliittyma {
         System.out.println("");
     }
 
-    public void tiedostotLuettelona() {
+    private void tiedostotLuettelona() {
         int indeksi = 0;
 
         for (String nimi : this.ohjelma.tiedostojenNimet()) {
@@ -134,7 +137,7 @@ public class Tekstikayttoliittyma {
         }
     }
 
-    public String valitseTiedosto() {
+    private String valitseTiedosto() {
         System.out.println("Valitse tiedosto:");
         this.tiedostotLuettelona();
         System.out.println("");
@@ -158,28 +161,25 @@ public class Tekstikayttoliittyma {
         return tiedostonNimi;
     }
 
-    /**
-     *
-     */
-    public void naytaTiedot() {
+    private void naytaTiedot() {
         System.out.println("Tietosi:");
         System.out.println("");
         System.out.println(this.ohjelma.kayttajanTilasto());
         System.out.println("");
     }
 
-    public void valitseHarjoittelualue() {
+    private void valitseHarjoittelualue() {
         String tiedostonNimi = this.valitseTiedosto();
 
         if (tiedostonNimi != null) {
-            this.ohjelma.asetaSanat(tiedostonNimi);
+            this.ohjelma.haeSanatTiedostosta(tiedostonNimi);
         } else {
             System.out.println("Tiedostoa ei löydy!");
         }
 
     }
 
-    public void tehtavaValikko() {
+    private void tehtavaValikko() {
         this.valitseHarjoittelualue();
 
         while (true) {
@@ -211,7 +211,7 @@ public class Tekstikayttoliittyma {
         }
     }
 
-    public void naytaSanat() {
+    private void naytaSanat() {
         String sanat = this.ohjelma.sanatMerkkijono();
         if (sanat == null) {
             System.out.println("Tiedostossa ei ole sanoja!");
@@ -220,12 +220,36 @@ public class Tekstikayttoliittyma {
         System.out.println(sanat);
     }
 
-    /**
-     *
-     * @param kerrat
-     * @param kaannettavaKieli
-     */
-    public void kysySanat(int kerrat, String kaannettavaKieli) {
+    private void kaannosTehtava(String kaannettavaKieli) {
+        if (!this.ohjelma.onkoSanatAsetettu()) {
+            System.out.println("Tiedostossa ei ole sanoja!");
+            return;
+        }
+
+        int kerrat;
+        while (true) {
+            System.out.print("Monta kertaa kysytään? ");
+
+
+            try {
+                kerrat = Integer.parseInt(lukija.nextLine());
+                if (kerrat < 0) {
+                    System.out.println("Anna jokin positiivinen luku!");
+                    return;
+                }
+                break;
+            } catch (Exception e) {
+                System.out.println("");
+                System.out.println("Anna jokin luku!");
+            }
+        }
+
+        System.out.println("");
+
+        kysySanat(kerrat, kaannettavaKieli);
+    }
+
+    private void kysySanat(int kerrat, String kaannettavaKieli) {
         int oikein = 0;
 
         for (int i = 0; i < kerrat; i++) {
@@ -244,14 +268,7 @@ public class Tekstikayttoliittyma {
         System.out.println("Sait oikein: " + oikein + "/" + kerrat);
     }
 
-    /**
-     *
-     * @param kysyttySana
-     * @param annettuVastaus
-     * @param kieli
-     * @return
-     */
-    public boolean tarkistaAnnettuKaannos(String kysyttySana, String annettuVastaus, String kieli) {
+    private boolean tarkistaAnnettuKaannos(String kysyttySana, String annettuVastaus, String kieli) {
         if (this.ohjelma.vastausOikein(kysyttySana, annettuVastaus, kieli)) {
             System.out.println("Oikein!");
             return true;
@@ -261,41 +278,8 @@ public class Tekstikayttoliittyma {
         }
     }
 
-    /**
-     *
-     * @param kaannettavaKieli
-     */
-    public void kaannosTehtava(String kaannettavaKieli) {   
-        if (!this.ohjelma.onkoSanatAsetettu()) {
-            System.out.println("Tiedostossa ei ole sanoja!");
-            return;
-        }
-        
-        int kerrat;
-        while (true) {
-            System.out.print("Monta kertaa kysytään? ");
+    private void yhdistaSanat() {
 
-
-            try {
-                kerrat = Integer.parseInt(lukija.nextLine());
-                if (kerrat < 0 ) {
-                    System.out.println("Anna jokin positiivinen luku!");
-                    return;
-                }
-                break;
-            } catch (Exception e) {
-                System.out.println("");
-                System.out.println("Anna jokin luku!");
-            }
-        }
-
-        System.out.println("");
-
-        kysySanat(kerrat, kaannettavaKieli);
-    }
-
-    public void yhdistaSanat() {
-    
         if (!this.ohjelma.onkoSanatAsetettu()) {
             System.out.println("Tiedostossa ei ole sanoja!");
             return;
@@ -326,10 +310,7 @@ public class Tekstikayttoliittyma {
         this.tulos(oikein, maara);
     }
 
-    /**
-     *
-     */
-    public void tulostaListat(int maara) {
+    private void tulostaListat(int maara) {
         //sanat-listassa on sanoja muodossa 1.kissa 2.koira 3.hevonen
         ArrayList<String> sanat = this.ohjelma.haeSanatNumerolla(maara);
         //kaannokset-listassa on sanat-listassa olevien sanojen käännöksiä muodossa a.cat b.horse c.dog
@@ -344,7 +325,7 @@ public class Tekstikayttoliittyma {
         System.out.println("");
     }
 
-    public int kysyVastaukset(int maara) {
+    private int kysyVastaukset(int maara) {
         System.out.println("Anna vastaukset muodossa '1a':");
         int oikein = 0;
 
@@ -355,25 +336,25 @@ public class Tekstikayttoliittyma {
                 continue;
             }
 
-            if (this.ohjelma.tarkistaVastaus(vastaus)) {
+            if (this.ohjelma.tarkistaYhdistaVastaus(vastaus)) {
                 oikein++;
             }
         }
         return oikein;
     }
 
-    public void tulos(int oikein, int maara) {
+    private void tulos(int oikein, int maara) {
         System.out.println("Sait oikein " + oikein + "/" + maara);
         System.out.print("Oikea rivi: " + this.ohjelma.oikeaRivi());
         System.out.println("");
     }
 
-    public void lopetus() {
+    private void lopetus() {
         System.out.println("Tietosi:");
         System.out.println(this.ohjelma.kayttajanTilasto());
         this.ohjelma.tallennaTilasto();
     }
-    
+
     private static void tulostaMerkkeja(char merkki, int kerrat) {
         for (int i = 0; i < kerrat; i++) {
             System.out.print(merkki);

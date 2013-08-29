@@ -5,9 +5,24 @@ package sanaohjelma.sovelluslogiikka;
  */
 public class Sanavalitsin {
 
+    /**
+     * Kuinka monen sanan välein halutaan, että väärin arvattuja sanoja kysytään
+     */
     private int toistovali;
+    
+    /**
+     * Järjestelmän sanat
+     */
     private Sanat sanat;
+    
+    /**
+     * Käyttäjään liittyvä tilasto
+     */
     private Tilasto tilasto;
+    
+    /**
+     * Väärin arvatut sanat ovat muistiossa
+     */
     private MokausMuistio muistio;
 
     /**
@@ -28,16 +43,15 @@ public class Sanavalitsin {
     }
 
     /**
-     * Metodi palauttaa sanan Sanat- tai Mokailut-luokasta. Ensiksi se
+     * Metodi palauttaa sanan Sanat- tai MokausMuistio-luokan oliosta. Ensiksi se
      * selvittää, onko aika kysyä sanaa mokattujen sanojen listalta. Jos
-     * kysyttyjen sanojen maara on jaollinen toistovälillä, annetaan sana sanaa,
-     * jota on jo kysytty aiemmin mutta jota ei ole tiedetty.
+     * kysyttyjen sanojen määrä on jaollinen toistovälillä, annetaan sana muistiosta. Jos muistio on tyhjä,
+     * haetaan sana sanat-oliosta.
      *
      * @param kieli Kieli jolla sana halutaan
      * @return Satunnainen sana
      */
     public String annaSana(String kieli) {
-        //onko aika  kysyä sanaa mokattujen sanojen listalta
         if (tilasto.sanamaara() != 0 && tilasto.sanamaara() % this.toistovali == 0) {
             String kysyttavaSana = this.muistio.annaJokuSana(kieli);
             if (kysyttavaSana != null) {

@@ -4,8 +4,18 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+
+/**
+ * Tiedostonlukija sisältää tiedostonlukemiseen tarvittavia metodeja
+ */
 public class Tiedostonlukija {
 
+    /**
+     *Metodi käy läpi tiedoston rivi riviltä ja tallentaa rivit ArrayList-rakenteeseen
+     * 
+     * @param tiedosto Tiedosto jota halutaan tarkastella
+     * @return Tiedoston sisältö listassa
+     */
     public ArrayList<String> lueTiedosto(File tiedosto) {
         Scanner lukija = null;
 
@@ -28,6 +38,13 @@ public class Tiedostonlukija {
         return rivit;
     }
 
+    /**
+     * Metodi muuttaa parametrina saadun listan sisällön sanapareiksi ja tallentaa parit sanat-olioon.
+     * Jos tiedostossa on rivejä, jotka eivät ole halutussa muodossa, niitä ei tallenneta.
+     * 
+     * @param rivit Lista sanapareista, jotka halutaan tallentaa sanat-olioon
+     * @return Sanat-luokan olio
+     */
     public Sanat tallennaSanaparit(ArrayList<String> rivit) {
         Sanat sanat = new Sanat();
 
@@ -43,6 +60,12 @@ public class Tiedostonlukija {
         return sanat;
     }
 
+    /**
+     * Metodi purkaa parametrina annetun listan arvot käyttäjä-olioksi ja tallentaa ne käyttäjät-olioon.
+     * 
+     * @param rivit Lista käyttäjiä
+     * @return Käyttäjät-luokan ilmentymä
+     */
     public Kayttajat haeKayttajat(ArrayList<String> rivit) {
         Kayttajat kayttajat = new Kayttajat();
 
@@ -68,6 +91,12 @@ public class Tiedostonlukija {
         return kayttajat;
     }
 
+    /**
+     * Metodi lukee Sanatiedostot-kansiossa olevan tiedoston ja palauttaa Sanat-luokan olion.
+     *
+     * @param tiedostonNimi Sanatiedostot-kansiossa oleva tiedosto
+     * @return Sanat-luokan ilmentymä, jossa tiedostossa oleva sanat
+     */
     public Sanat tuoSanat(String tiedostonNimi) {
         File tiedosto = new File("src/sanaohjelma/Sanatiedostot/" + tiedostonNimi);
         ArrayList<String> rivit = this.lueTiedosto(tiedosto);
@@ -75,6 +104,11 @@ public class Tiedostonlukija {
         return sanat;
     }
 
+    /**
+     * Metodi tekee saman kuin edeltävä metodi, mutta nyt parametrina voi antaa tiedoston,
+     * jonka sijainti on vapaa. 
+
+     */
     public Sanat tuoSanat(File tiedosto) {
         ArrayList<String> rivit = this.lueTiedosto(tiedosto);
 
@@ -85,6 +119,12 @@ public class Tiedostonlukija {
         return sanat;
     }
 
+    /**
+     * Metodi lukee tiedoston ja tuo tiedostosta löydetyt käyttäjät käyttäjät-luokkaan tallennettuina.
+     *
+     * @param tiedosto Tiedosto jossa käyttäjiä
+     * @return Käyttäjät-luokan ilemntymä, joka sisältää tiedostosta löydetyt käyttäjät
+     */
     public Kayttajat tuoKayttajat(File tiedosto) {
         ArrayList<String> rivit = this.lueTiedosto(tiedosto);
 
@@ -96,6 +136,12 @@ public class Tiedostonlukija {
         return kayttajat;
     }
 
+    /**
+     * Hakee kansiossa olevien tiedostojen nimet.
+     *
+     * @param polku Kansion sijainti
+     * @return Tiedostojen nimet listassa
+     */
     public ArrayList<String> tiedostojenNimet(String polku) {
         File kansio = new File(polku);
         File[] tiedostot = kansio.listFiles();

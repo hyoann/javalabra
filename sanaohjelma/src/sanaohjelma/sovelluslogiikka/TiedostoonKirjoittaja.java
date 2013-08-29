@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- *TiedostoonKirjoittaja-luokan avulla voidaan kirjoittaa tilastoon tekstiä.
+ *TiedostoonKirjoittaja-luokan avulla voidaan kirjoittaa tekstiä tiedostoon.
  */
 public class TiedostoonKirjoittaja {
 
@@ -27,7 +27,7 @@ public class TiedostoonKirjoittaja {
     }
 
     /**
-     * Metodi lisää tiedostoon halutun tekstin.
+     * Metodi lisää tiedostoon halutun tekstin mutta ei poista siellä jo mahdollisesti olevaa sisältöä.
      *
      * @param sijainti Tiedostopolku
      * @param teksti Tiedostoon lisättävä teksti
@@ -44,7 +44,7 @@ public class TiedostoonKirjoittaja {
     
     /**
      * Metodi liittää kahden sanan väliin väliviivan, ja lisaa näin saadun uuden merkkijonon
-     * haluttuun tiedostoon.
+     * haluttuun tiedostoon. Metodia käytetään uusien sanaparien tallentamiseen tiedostoon.
      *
      * @param tiedosto Tiedostopolku
      * @param sana1 Väliviivaa edeltävä sana

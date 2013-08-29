@@ -35,7 +35,7 @@ public class ListanKuuntelija implements ListSelectionListener {
 
 
             System.out.println(tiedostot.getSelectedValue().toString());
-            this.ohjelma.asetaSanat(tiedostot.getSelectedValue().toString());
+            this.ohjelma.haeSanatTiedostosta(tiedostot.getSelectedValue().toString());
 
             String[] sanaparit = this.ohjelma.sanatMerkkijono().split("\n");
 
