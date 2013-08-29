@@ -3,7 +3,7 @@ package sanaohjelma.kayttoliittyma.Kayttaja;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import sanaohjelma.Hallinta;
+import sanaohjelma.sovelluslogiikka.Hallinta;
 
 public class KayttajanTiedot extends JPanel {
     private Hallinta ohjelma;

@@ -5,7 +5,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import sanaohjelma.Hallinta;
+import sanaohjelma.sovelluslogiikka.Hallinta;
 import sanaohjelma.kayttoliittyma.Tapahtumankuuntelijat.Kayttaja.ParienTarkistaja;
 
 public class YhdistaSanaparit extends JPanel {

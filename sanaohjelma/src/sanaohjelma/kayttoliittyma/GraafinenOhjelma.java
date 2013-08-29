@@ -9,7 +9,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
-import sanaohjelma.Hallinta;
+import sanaohjelma.sovelluslogiikka.Hallinta;
 import sanaohjelma.sovelluslogiikka.Tiedostonlukija;
 
 public class GraafinenOhjelma implements Runnable {

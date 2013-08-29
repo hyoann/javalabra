@@ -13,7 +13,7 @@ import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import sanaohjelma.Hallinta;
+import sanaohjelma.sovelluslogiikka.Hallinta;
 
 public class ListanKuuntelija implements ListSelectionListener {
 

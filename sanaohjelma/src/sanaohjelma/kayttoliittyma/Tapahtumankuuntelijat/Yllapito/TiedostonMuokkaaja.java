@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import sanaohjelma.Hallinta;
+import sanaohjelma.sovelluslogiikka.Hallinta;
 
 public class TiedostonMuokkaaja implements ActionListener {
     private JFrame frame;

@@ -7,7 +7,7 @@ import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
-import sanaohjelma.Hallinta;
+import sanaohjelma.sovelluslogiikka.Hallinta;
 import sanaohjelma.kayttoliittyma.Kayttaja.KayttajanTiedot;
 import sanaohjelma.kayttoliittyma.Kayttaja.KysyKerrat;
 import sanaohjelma.kayttoliittyma.Kayttaja.Lopetus;

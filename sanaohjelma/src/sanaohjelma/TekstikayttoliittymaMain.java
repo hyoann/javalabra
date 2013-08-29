@@ -1,20 +1,20 @@
 package sanaohjelma;
 
+
 import java.util.Scanner;
-import javax.swing.SwingUtilities;
-import sanaohjelma.kayttoliittyma.GraafinenOhjelma;
 import sanaohjelma.kayttoliittyma.Tekstikayttoliittyma;
 import sanaohjelma.kayttoliittyma.YllapitoTeksti;
+import sanaohjelma.sovelluslogiikka.Hallinta;
 import sanaohjelma.sovelluslogiikka.Kielet;
 
-public class Main {
+
+public class TekstikayttoliittymaMain {
 
     public static void main(String args[]) {
         Kielet.asetaKielet("suomi", "venäjä");
-
-//Käynnistää tekstikäyttöliittymän:
         Hallinta ohjelma = new Hallinta();
         ohjelma.asetaToistojenTiheys(2);
+        
         while (true) {
             System.out.println("Oletko (1) käyttäjä vai (2) ylläpito?");
             String valinta = (new Scanner(System.in)).nextLine();
@@ -28,10 +28,5 @@ public class Main {
                 break;
             }
         }
-        
-        
-//Graafisen käyttöliittymän käynnistys:       
-//        GraafinenOhjelma ohjelmaGraafinen = new GraafinenOhjelma();
-//        SwingUtilities.invokeLater(ohjelmaGraafinen);
     }
 }

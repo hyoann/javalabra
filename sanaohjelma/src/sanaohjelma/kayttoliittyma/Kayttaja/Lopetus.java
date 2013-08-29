@@ -2,7 +2,7 @@
 package sanaohjelma.kayttoliittyma.Kayttaja;
 
 import javax.swing.JFrame;
-import sanaohjelma.Hallinta;
+import sanaohjelma.sovelluslogiikka.Hallinta;
 
 public class Lopetus  {
     private JFrame frame;

@@ -1,9 +1,7 @@
 package sanaohjelma.sovelluslogiikka;
 
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 
 /**
  *TiedostoonKirjoittaja-luokan avulla voidaan kirjoittaa tekstiä tiedostoon.

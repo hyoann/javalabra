@@ -12,7 +12,7 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
-import sanaohjelma.Hallinta;
+import sanaohjelma.sovelluslogiikka.Hallinta;
 import sanaohjelma.kayttoliittyma.Kayttaja.Kaannostehtava;
 
 public class AsetustenTarkistaja implements ActionListener {

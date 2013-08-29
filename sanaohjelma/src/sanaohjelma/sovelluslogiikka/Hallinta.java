@@ -1,16 +1,7 @@
-package sanaohjelma;
+package sanaohjelma.sovelluslogiikka;
 
 import java.io.File;
 import java.util.ArrayList;
-import sanaohjelma.sovelluslogiikka.Kayttaja;
-import sanaohjelma.sovelluslogiikka.Kayttajat;
-import sanaohjelma.sovelluslogiikka.MokausMuistio;
-import sanaohjelma.sovelluslogiikka.Sanat;
-import sanaohjelma.sovelluslogiikka.Sanavalitsin;
-import sanaohjelma.sovelluslogiikka.Tarkistaja;
-import sanaohjelma.sovelluslogiikka.Tiedostonlukija;
-import sanaohjelma.sovelluslogiikka.TiedostoonKirjoittaja;
-import sanaohjelma.sovelluslogiikka.YhdistaSanat;
 
 /**
  * Hallinta-luokka toimii tavallaan rajapintana käyttöliittymän ja
@@ -58,7 +49,7 @@ public class Hallinta {
         this.sanat = null;
         this.tiedostonlukija = new Tiedostonlukija();
         this.kayttaja = null;
-        this.kayttajat = tiedostonlukija.tuoKayttajat(new File("src/sanaohjelma/kayttajat.txt"));
+        this.kayttajat = tiedostonlukija.tuoKayttajat(new File("src/sanaohjelma/Kayttajat/kayttajat.txt"));
         this.muistio = new MokausMuistio();
         this.yhdista = null;
         this.toistotiheys = 3;
@@ -87,7 +78,7 @@ public class Hallinta {
 
         if (this.kayttajat.lisaaKayttaja(tunnus, kayttaja)) {
             TiedostoonKirjoittaja kirjoittaja = new TiedostoonKirjoittaja();
-            kirjoittaja.kirjoitaTiedostoon("src/sanaohjelma/kayttajat.txt", this.kayttajat.toString());
+            kirjoittaja.kirjoitaTiedostoon("src/sanaohjelma/Kayttajat/kayttajat.txt", this.kayttajat.toString());
             return true;
         } else {
             return false;
@@ -135,7 +126,7 @@ public class Hallinta {
     public boolean poistaKayttaja(String tunnus) {
         if (this.kayttajat.poistaKayttaja(tunnus)) {
             TiedostoonKirjoittaja kirjoittaja = new TiedostoonKirjoittaja();
-            kirjoittaja.kirjoitaTiedostoon("src/sanaohjelma/kayttajat.txt", this.kayttajat.toString());
+            kirjoittaja.kirjoitaTiedostoon("src/sanaohjelma/Kayttajat/kayttajat.txt", this.kayttajat.toString());
             return true;
         }
         return false;
@@ -147,7 +138,7 @@ public class Hallinta {
      */
     public void tallennaTilasto() {
         TiedostoonKirjoittaja kirjoittaja = new TiedostoonKirjoittaja();
-        kirjoittaja.kirjoitaTiedostoon("src/sanaohjelma/kayttajat.txt", this.kayttajat.toString());
+        kirjoittaja.kirjoitaTiedostoon("src/sanaohjelma/Kayttajat/kayttajat.txt", this.kayttajat.toString());
     }
 
     /**

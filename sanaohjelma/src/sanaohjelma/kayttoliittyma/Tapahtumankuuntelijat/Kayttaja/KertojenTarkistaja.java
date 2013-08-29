@@ -7,7 +7,7 @@ import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import sanaohjelma.Hallinta;
+import sanaohjelma.sovelluslogiikka.Hallinta;
 import sanaohjelma.kayttoliittyma.Kayttaja.YhdistaSanaparit;
 
 public class KertojenTarkistaja implements ActionListener {

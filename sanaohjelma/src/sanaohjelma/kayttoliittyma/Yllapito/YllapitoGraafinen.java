@@ -11,7 +11,7 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
-import sanaohjelma.Hallinta;
+import sanaohjelma.sovelluslogiikka.Hallinta;
 import sanaohjelma.kayttoliittyma.Tapahtumankuuntelijat.Yllapito.TiedostojenKuuntelija;
 import sanaohjelma.kayttoliittyma.Tapahtumankuuntelijat.Yllapito.TiedostonPoisto;
 

@@ -2,7 +2,7 @@ package sanaohjelma.kayttoliittyma;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-import sanaohjelma.Hallinta;
+import sanaohjelma.sovelluslogiikka.Hallinta;
 import sanaohjelma.sovelluslogiikka.Kielet;
 
 /**
