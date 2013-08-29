@@ -160,7 +160,7 @@ public class Hallinta {
 
     /**
      * Tarkistaa onko käyttäjän antama vastaus oikein tarkistaja-olion avulla. 
-     * Metodi päivittää samalla käyttäjän tilastoa.
+     * Metodi päivittää samalla käyttäjän tilastoa ja poistaa sanan muistiosta jos vastaus oikein.
      *
      * @param kysyttySana Käyttäjältä kysytty sana
      * @param annettuVastaus Käyttäjän antama vastaus
@@ -173,6 +173,7 @@ public class Hallinta {
         Tarkistaja tarkistaja = new Tarkistaja(this.sanat, kieli);
         if (tarkistaja.vastausOikein(kysyttySana, annettuVastaus)) {
             this.kayttaja.getTilasto().kasvataOikeita();
+            this.muistio.poistaSana(kysyttySana, kieli);
             return true;
         }
         return false;
