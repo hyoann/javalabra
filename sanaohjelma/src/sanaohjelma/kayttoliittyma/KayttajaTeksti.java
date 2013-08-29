@@ -9,12 +9,12 @@ import sanaohjelma.sovelluslogiikka.Kielet;
  *
  * Sisältää käyttäjän tekstikäyttöliittymän
  */
-public class Tekstikayttoliittyma {
+public class KayttajaTeksti {
 
     private Hallinta ohjelma;
     private Scanner lukija;
 
-    public Tekstikayttoliittyma(Hallinta ohjelma) {
+    public KayttajaTeksti(Hallinta ohjelma) {
         this.ohjelma = ohjelma;
         this.lukija = new Scanner(System.in, "UTF-8");
     }

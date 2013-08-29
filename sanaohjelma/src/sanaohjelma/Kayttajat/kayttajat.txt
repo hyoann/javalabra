@@ -1,5 +1,5 @@
-mai, Maija, sala2, 17, 13
+mai, Maija, sala2, 25, 15
 test, testeri, test2, 0, 0
 q, e, w, 13, 1
-mat, Matti, sala1, 172, 62
 a, c, b, 0, 0
+mat, Matti, sala1, 172, 62

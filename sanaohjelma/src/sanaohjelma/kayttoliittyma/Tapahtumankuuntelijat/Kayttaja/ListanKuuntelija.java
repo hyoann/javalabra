@@ -10,7 +10,6 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.ScrollPaneConstants;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import sanaohjelma.sovelluslogiikka.Hallinta;
@@ -31,9 +30,6 @@ public class ListanKuuntelija implements ListSelectionListener {
     @Override
     public void valueChanged(ListSelectionEvent e) {
         if (!e.getValueIsAdjusting()) {
-
-
-
             System.out.println(tiedostot.getSelectedValue().toString());
             this.ohjelma.haeSanatTiedostosta(tiedostot.getSelectedValue().toString());
 
@@ -58,7 +54,6 @@ public class ListanKuuntelija implements ListSelectionListener {
                     this.frame.remove(komponentit[i]);
 
                     this.frame.repaint();
-
                 }
             }
 
@@ -72,6 +67,5 @@ public class ListanKuuntelija implements ListSelectionListener {
             this.frame.invalidate();
             this.frame.validate();
         }
-
     }
 }

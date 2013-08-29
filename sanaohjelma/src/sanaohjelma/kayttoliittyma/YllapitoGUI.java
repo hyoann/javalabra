@@ -1,23 +1,21 @@
 package sanaohjelma.kayttoliittyma;
 
 import sanaohjelma.kayttoliittyma.Kayttaja.Kirjautuminen;
-import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import javax.swing.BoxLayout;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
+import sanaohjelma.kayttoliittyma.Yllapito.YllapitoGraafinen;
 import sanaohjelma.sovelluslogiikka.Hallinta;
-import sanaohjelma.sovelluslogiikka.Tiedostonlukija;
 
-public class GraafinenOhjelma implements Runnable {
+public class YllapitoGUI implements Runnable {
 
     private JFrame frame;
     private Hallinta ohjelma;
 
-    public GraafinenOhjelma() {
+    public YllapitoGUI() {
         this.ohjelma = new Hallinta();
         this.ohjelma.asetaToistojenTiheys(2);
     }
@@ -25,7 +23,7 @@ public class GraafinenOhjelma implements Runnable {
     @Override
     public void run() {
 
-        frame = new JFrame("Sanaohjelma");
+        frame = new JFrame("Ylläpito");
         frame.setPreferredSize(new Dimension(800, 500));
 
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -36,11 +34,8 @@ public class GraafinenOhjelma implements Runnable {
     }
 
     private void luoKomponentit(Container container) {
-        container.add(new Kirjautuminen(this.frame, this.ohjelma));
-        container.setLayout(new BoxLayout(container, BoxLayout.Y_AXIS));
-        
-//        container.add(new YllapitoGraafinen(this.frame, this.ohjelma));
-//        container.setLayout(new GridLayout(2, 2));
+        container.add(new YllapitoGraafinen(this.frame, this.ohjelma));
+        container.setLayout(new GridLayout(1, 2));
     }
 
     public JFrame getFrame() {

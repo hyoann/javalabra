@@ -33,9 +33,7 @@ public class Kirjautuminen extends JPanel {
         this.add(annaSalasana);
         this.add(salasana);
         this.add(nappi);
-        
 
-        
         nappi.addActionListener(new KirjautumisenTunnistaja(this.frame, tunnus, salasana, this.ohjelma));
     }
 }

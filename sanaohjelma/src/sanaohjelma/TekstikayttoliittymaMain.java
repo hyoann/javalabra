@@ -2,7 +2,7 @@ package sanaohjelma;
 
 
 import java.util.Scanner;
-import sanaohjelma.kayttoliittyma.Tekstikayttoliittyma;
+import sanaohjelma.kayttoliittyma.KayttajaTeksti;
 import sanaohjelma.kayttoliittyma.YllapitoTeksti;
 import sanaohjelma.sovelluslogiikka.Hallinta;
 import sanaohjelma.sovelluslogiikka.Kielet;
@@ -19,7 +19,7 @@ public class TekstikayttoliittymaMain {
             System.out.println("Oletko (1) käyttäjä vai (2) ylläpito?");
             String valinta = (new Scanner(System.in)).nextLine();
             if (valinta.equals("1")) {
-                Tekstikayttoliittyma tekstikäli = new Tekstikayttoliittyma(ohjelma);
+                KayttajaTeksti tekstikäli = new KayttajaTeksti(ohjelma);
                 tekstikäli.kirjautuminen();
                 break;
             } else if (valinta.equals("2")) {

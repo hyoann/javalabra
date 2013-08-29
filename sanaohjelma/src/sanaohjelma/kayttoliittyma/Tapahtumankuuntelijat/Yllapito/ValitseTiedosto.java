@@ -9,27 +9,30 @@ import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
 import sanaohjelma.sovelluslogiikka.Hallinta;
 
 public class ValitseTiedosto implements ActionListener {
     private JFrame frame;
     private Hallinta ohjelma;
-    private JFileChooser tiedostot;
+    private JFileChooser tiedostonValitsija;
+    private JList tiedostot;
     
-    public ValitseTiedosto(JFrame frame, Hallinta ohjelma) {
+    public ValitseTiedosto(JFrame frame, Hallinta ohjelma, JList tiedostot) {
         this.frame = frame;
         this.ohjelma = ohjelma;
-        this.tiedostot = new JFileChooser();
+        this.tiedostonValitsija = new JFileChooser();
+        this.tiedostot = tiedostot;
         
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-         int returnVal = tiedostot.showOpenDialog(this.frame);
+         int returnVal = tiedostonValitsija.showOpenDialog(this.frame);
          
          if (returnVal == JFileChooser.APPROVE_OPTION) {
-            File tiedosto = tiedostot.getSelectedFile();
+            File tiedosto = tiedostonValitsija.getSelectedFile();
              System.out.println(tiedosto.getName());
              
             JPanel kyllaVaiEi = new JPanel();
@@ -38,7 +41,7 @@ public class ValitseTiedosto implements ActionListener {
             JButton kylla = new JButton("Kyllä");
             JButton ei = new JButton("Ei");
            
-            TiedostonLisays lisays = new TiedostonLisays(this.frame, this.ohjelma, tiedosto, kyllaVaiEi);
+            TiedostonLisays lisays = new TiedostonLisays(this.frame, this.ohjelma, tiedosto, kyllaVaiEi, tiedostot);
             kylla.addActionListener(lisays);
             ei.addActionListener(lisays);
             

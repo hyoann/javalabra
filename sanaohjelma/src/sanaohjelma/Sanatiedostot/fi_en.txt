@@ -1,11 +1,10 @@
-koulu - school
 elämä - life
+koulu - school
 kukka - flower
-ihminen - human
 kynä - pen
+ihminen - human
 aurinko - sun
 tähti - star
 eläin - animal
 kissa - cat
 koira - dog
-elämä - life
